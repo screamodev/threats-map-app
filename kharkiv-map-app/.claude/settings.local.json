@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(node scripts/fetch-geodata.mjs)",
+      "Bash(node scripts/fetch-districts.mjs)",
+      "WebFetch(domain:nominatim.openstreetmap.org)",
+      "Bash(node scripts/fetch-from-nominatim.mjs)",
+      "Bash(npx tsc:*)",
+      "Bash(npx tsx:*)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

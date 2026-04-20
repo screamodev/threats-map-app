@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+.telegram-session
+*.session
+data/kharkiv.db
+data/kharkiv.db-wal
+data/kharkiv.db-shm
+.DS_Store

@@ -1,0 +1,34 @@
+{
+  "name": "kharkiv-map-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --ignore '.telegram-session' --ignore 'data/**' src/index.ts",
+    "auth": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test:gazetteer": "tsx src/gazetteer/test.ts",
+    "test:parser": "tsx src/parser/test.ts",
+    "test:correlation": "tsx src/correlation/test.ts"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/websocket": "^11.2.0",
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.4",
+    "openai": "^6.34.0",
+    "telegram": "^2.26.22",
+    "uuid": "^13.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.6.0",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
