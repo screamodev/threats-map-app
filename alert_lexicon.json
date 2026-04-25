@@ -1,0 +1,2366 @@
+{
+  "location_dictionary": [
+    {
+      "canonical": "Салтівка",
+      "canonical_en": "Saltivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Салтовка",
+        "Салтовку",
+        "Салтовке",
+        "СС",
+        "Салтів"
+      ],
+      "notes": "СС = Saltivka/Severnaya Saltivka ambiguous; most often Saltivka proper",
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Северна Салтівка",
+      "canonical_en": "Northern Saltivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Северная Салтовка",
+        "СС",
+        "Сев.Салтовка"
+      ],
+      "notes": "СС highly ambiguous — may mean Saltivka or Severnaya Saltivka depending on context",
+      "confidence": 0.75
+    },
+    {
+      "canonical": "Центр",
+      "canonical_en": "City Centre",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Центр",
+        "центр",
+        "Центру"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "ХТЗ",
+      "canonical_en": "KhTZ (Kharkov Tractor Plant district)",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "ХТЗ"
+      ],
+      "notes": "Industrial district, southeastern Kharkiv",
+      "confidence": 0.98
+    },
+    {
+      "canonical": "Немишля",
+      "canonical_en": "Nemyshlya",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Немышля",
+        "Немышлей",
+        "Немышлею",
+        "НД",
+        "Немышля/НД"
+      ],
+      "notes": "НД likely = Немышля/Докучаєвське area; verify context",
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Новобаварський район",
+      "canonical_en": "Novobavarsky district",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Бавария",
+        "Баварию",
+        "Баварии",
+        "Бавария/Ледное"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Основа",
+      "canonical_en": "Osnova",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Основа",
+        "Основу",
+        "Основой",
+        "Основе"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Жихор",
+      "canonical_en": "Zhykhor",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Жихорь",
+        "Жихарь",
+        "Жихаря",
+        "Жихорь"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Москалівка",
+      "canonical_en": "Moskalivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Москалевка",
+        "Москалевке",
+        "Москалевку"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Левада",
+      "canonical_en": "Levada",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Левада",
+        "Леваду",
+        "Левады"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Металіст",
+      "canonical_en": "Metalist",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Металлист",
+        "Металлиста"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Балашівка",
+      "canonical_en": "Balashivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Балашовка",
+        "Балашовку",
+        "Балашовкой"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Тюринка",
+      "canonical_en": "Tyurinka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Тюринка",
+        "Тюринку",
+        "Тюринкой"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Журавлівка",
+      "canonical_en": "Zhuravlivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Журавлевка",
+        "Журавлевку"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Вокзал (Харків)",
+      "canonical_en": "Train Station area (Kharkiv)",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "Вокзал",
+        "Вокзала"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Сортувальна",
+      "canonical_en": "Sortuvalnya (Sorting yard area)",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Сортировка",
+        "Сортировкой",
+        "Сортировки"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Алексіївка",
+      "canonical_en": "Aleksiyivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Алексеевка",
+        "Алексеевку",
+        "Алексеевкой"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Малинівка",
+      "canonical_en": "Malynivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Малиновка",
+        "Малиновку",
+        "Малиновки"
+      ],
+      "notes": "Also a village near Chuhuiv oblast — ambiguous by context",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Холодна Гора (ХГ)",
+      "canonical_en": "Kholodna Hora",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "ХГ",
+        "Холодная Гора"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Лєнінський (ЛГ)",
+      "canonical_en": "Leninsky district",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "ЛГ",
+        "Ленинская гора"
+      ],
+      "notes": "ЛГ likely = Leninska hora / Leninsky district area",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Площа Повстання (ПП)",
+      "canonical_en": "Ploshcha Povstannia",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "ПП",
+        "Площадь Повстания"
+      ],
+      "notes": "ПП = Ploscha Povstannia (metro/landmark), central Kharkiv",
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Ботсад",
+      "canonical_en": "Botanical Garden (Kharkiv)",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "Ботсад",
+        "Ботаничський сад"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Сокільники",
+      "canonical_en": "Sokilnyky",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Сокольники",
+        "Сокольниках"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Шишківка",
+      "canonical_en": "Shyshkivka",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Шишковка",
+        "Шишковку"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Жуки",
+      "canonical_en": "Zhuky",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Жуки",
+        "Жуков"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Покотилівка",
+      "canonical_en": "Pokotylilka",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Покотиловка",
+        "Покотиловку",
+        "Покотиловкой"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Бабаї",
+      "canonical_en": "Babayi",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Бабаи",
+        "Бабаями",
+        "Бабаях"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Безлюдівка",
+      "canonical_en": "Bezlyudivka",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Безлюдовка",
+        "Безлюдовки",
+        "Безлюдовку",
+        "Безлюдовкой"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Хорошеве",
+      "canonical_en": "Khorosheve",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Хорошево",
+        "Хорошевом"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Васищеве",
+      "canonical_en": "Vasyshcheve",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Васищево",
+        "Васищева"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Буди",
+      "canonical_en": "Budy",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Буды",
+        "Будах"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Харківський аеропорт",
+      "canonical_en": "Kharkiv Airport (Osnova)",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "Аэропорт",
+        "Аэропортом",
+        "Аэропорта"
+      ],
+      "notes": "Refers to Kharkiv International Airport (Osnova area)",
+      "confidence": 0.95
+    },
+    {
+      "canonical": "РЖМ",
+      "canonical_en": "RZhM (Rzhevka/Rogan area)",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "РЖМ"
+      ],
+      "notes": "Likely refers to Rzhevka marshalling yard / Rogan area — confirm with local knowledge",
+      "confidence": 0.75
+    },
+    {
+      "canonical": "Рогань",
+      "canonical_en": "Rogan",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Рогань",
+        "Рогани",
+        "Рогань/М Рогань"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Мала Рогань",
+      "canonical_en": "Mala Rogan",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "М Рогань",
+        "Малая Рогань",
+        "М. Рогань"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Кулиничі",
+      "canonical_en": "Kulynychi",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Кулиничи",
+        "Кулиничах"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Пісочин",
+      "canonical_en": "Pisochyn",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Песочин",
+        "Песочину",
+        "Песочина"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Коротич",
+      "canonical_en": "Korotych",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Коротич"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Солоницівка",
+      "canonical_en": "Solonytsi",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Солоницевка",
+        "Солоницевку",
+        "Солоницевки"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Перещепне",
+      "canonical_en": "Pereshchepne",
+      "type": "settlement",
+      "aliases": [
+        "Пересечное",
+        "Пересечного"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Залютине",
+      "canonical_en": "Zalyutyne",
+      "type": "district",
+      "city": "Kharkiv",
+      "aliases": [
+        "Залютино"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Горизонт",
+      "canonical_en": "Gorizontal (area/landmark)",
+      "type": "landmark",
+      "city": "Kharkiv (east)",
+      "aliases": [
+        "Горизонт"
+      ],
+      "notes": "Likely refers to Horizon district or industrial landmark near ХТЗ area",
+      "confidence": 0.75
+    },
+    {
+      "canonical": "Докучаєвське",
+      "canonical_en": "Dokuchayevske",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Докучаевское",
+        "Докучаевском",
+        "НД"
+      ],
+      "notes": "НД ambiguous — also could be Nemyshlya/Dokuchayevske combined",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Хролів",
+      "canonical_en": "Khroliv / Hroliv",
+      "type": "settlement",
+      "city": "Kharkiv (suburb)",
+      "aliases": [
+        "Хролы",
+        "Хролами"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Котляри",
+      "canonical_en": "Kotlyary",
+      "type": "settlement",
+      "aliases": [
+        "Котляры"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Котлярівка (Ледне)",
+      "canonical_en": "Ledne / Lednik",
+      "type": "settlement",
+      "aliases": [
+        "Ледное",
+        "Ледного",
+        "Ледным"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Лісне",
+      "canonical_en": "Lisne",
+      "type": "settlement",
+      "aliases": [
+        "Лесное",
+        "Лесного"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Пятихатки",
+      "canonical_en": "Pyatykhatky",
+      "type": "district_or_village",
+      "aliases": [
+        "Пятихатки",
+        "Пятихаток"
+      ],
+      "notes": "Could be Kharkiv suburb or separate village — verify",
+      "confidence": 0.85
+    },
+    {
+      "canonical": "17-те кладовище",
+      "canonical_en": "17th Cemetery (Kharkiv landmark)",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "17 Кладбище",
+        "17 кладбище",
+        "17 кладбища"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "ХАЗ",
+      "canonical_en": "KhAZ (Kharkiv Aviation Plant)",
+      "type": "landmark",
+      "city": "Kharkiv",
+      "aliases": [
+        "ХАЗ"
+      ],
+      "notes": "Kharkiv aviation plant area / landmark",
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Дергачі",
+      "canonical_en": "Derhachi",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Дергачи",
+        "Дергачей",
+        "Дергачах"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Циркуни",
+      "canonical_en": "Tsyrkuny",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Циркуны",
+        "Циркунами",
+        "Циркунов"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Прудянка",
+      "canonical_en": "Prudyanka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Прудянку",
+        "Прудянка",
+        "Прудянкой",
+        "Прудянки"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Пітомник",
+      "canonical_en": "Pitomnyk / Nursery station area",
+      "type": "settlement_or_landmark",
+      "aliases": [
+        "Питомник",
+        "Питомника",
+        "Питомнике"
+      ],
+      "notes": "Pitomnyk — railway/settlement node north of Kharkiv",
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Слатине",
+      "canonical_en": "Slatyne",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Слатино",
+        "Слатину"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Безруки",
+      "canonical_en": "Bezruky",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Безруки",
+        "Безруков",
+        "Безруках"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Малинівка (Дергачівський р-н)",
+      "canonical_en": "Malynivka (Derhachi raion)",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Малиновка",
+        "Малиновку"
+      ],
+      "notes": "Ambiguous: also exists as Kharkiv district name",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Мала Данилівка",
+      "canonical_en": "Mala Danyliv",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Малая Даниловка",
+        "Малую Даниловку",
+        "МД"
+      ],
+      "notes": "МД = Мала Данилівка — frequently used abbreviation",
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Тишки",
+      "canonical_en": "Tyshky",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Тишки",
+        "Тишков"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Кутузівка",
+      "canonical_en": "Kutuzivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Кутузовка",
+        "Кутузовку",
+        "Кутузовкой"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Михайлівка",
+      "canonical_en": "Mykhaylivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Михайловка"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Бобровка",
+      "canonical_en": "Bobrovka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Бобровку",
+        "Бобровкой"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Богодухів",
+      "canonical_en": "Bohodukhiv",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Богодухов",
+        "Богодухову",
+        "Богодухова",
+        "Богодуховом",
+        "Богодуховский",
+        "Богодуховом"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "canonical": "Золочів",
+      "canonical_en": "Zolochiv",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Золочев",
+        "Золочева",
+        "Золочевом",
+        "Золочевский",
+        "Золочев/район"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "canonical": "Козача Лопань",
+      "canonical_en": "Kozacha Lopan",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Козачку",
+        "Козачка",
+        "Козачкой",
+        "Козачки"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Уди",
+      "canonical_en": "Udy",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Уды",
+        "Удах"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Довжик",
+      "canonical_en": "Dovzhyk",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Довжик",
+        "Довжика"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Карасівка / Калинове",
+      "canonical_en": "Karasivka / Kalynove",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Карасивку",
+        "Калинове",
+        "Карасівка",
+        "Карасевку",
+        "Каліново"
+      ],
+      "notes": "East of Zolochiv; FPV/drone strikes noted here",
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Одноробівка",
+      "canonical_en": "Odnorobivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Одноробовку",
+        "Одноробовка",
+        "Одноробовкой"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Максимівка",
+      "canonical_en": "Maksymivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Максимовка",
+        "Максимовку",
+        "Максимовкой"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Краснокутськ",
+      "canonical_en": "Krasnokutsk",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Краснокутск",
+        "Краснокутска"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Гути",
+      "canonical_en": "Huty",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Гуты",
+        "Гутах"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Шаровка",
+      "canonical_en": "Sharivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Шаровка",
+        "Шаровки"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Мерчик",
+      "canonical_en": "Merchyk",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Мерчик",
+        "Мерчика"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Ковяги",
+      "canonical_en": "Kovyahy",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Ковяги",
+        "Ковягах",
+        "Ковяги/Валки"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Братениці / Писарівка",
+      "canonical_en": "Bratenytsi / Pysarivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Братеници",
+        "Писаревка"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Цупівка",
+      "canonical_en": "Tsupivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Цуповку",
+        "Цуповка",
+        "Цуповки"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Сковородинівка",
+      "canonical_en": "Skovorodynyvka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Сковородиновку",
+        "Сковородиновки",
+        "Сковородиновка"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Ліпці",
+      "canonical_en": "Liptsi",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Липцы",
+        "Липцах",
+        "Липцев"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Веселе",
+      "canonical_en": "Vesele",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Веселое",
+        "Веселого",
+        "Веселому"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Нескучне",
+      "canonical_en": "Neskuchne",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Нескучное"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Борщова",
+      "canonical_en": "Borshchova",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Борщевую",
+        "Борщевая",
+        "Борщевой"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Проходи",
+      "canonical_en": "Prokhody",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Проходы",
+        "Проходах"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Ольшани",
+      "canonical_en": "Olshany",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Ольшаны",
+        "Ольшанах",
+        "Ольшан"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Мартове",
+      "canonical_en": "Martove",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Мартове",
+        "Мартового"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Хотомля",
+      "canonical_en": "Khotomlia",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Хотомля"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Коробочкине",
+      "canonical_en": "Korobochkyne",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Коробочкино"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Вовчанськ",
+      "canonical_en": "Vovchansk",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Волчанск",
+        "Волчанска",
+        "Волчанском",
+        "Волчанский",
+        "Волчанского"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "canonical": "Великий Бурлук",
+      "canonical_en": "Velykyi Burluk",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Бурлук",
+        "Бурлука",
+        "Бурлуке",
+        "Бурулк"
+      ],
+      "notes": "Бурулк = typo of Бурлук",
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Приколотне",
+      "canonical_en": "Prykoltne",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Приколотное",
+        "Приколотного"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Печеніги",
+      "canonical_en": "Pechenihy",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Печенеги",
+        "Печенегах"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Старий Салтів",
+      "canonical_en": "Staryi Saltiv",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Старый Салтов",
+        "Ст Салтов",
+        "Ст. Салтов",
+        "Ст.Салтов"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Чугуїв",
+      "canonical_en": "Chuhuiv",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Чугуев",
+        "Чугуева",
+        "Чугуевом"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "canonical": "Малинівка (Чугуївський р-н)",
+      "canonical_en": "Malynivka near Chuhuiv",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Малиновка",
+        "Малиновку"
+      ],
+      "notes": "Separate from Malynivka (Kharkiv district) — context needed",
+      "confidence": 0.78
+    },
+    {
+      "canonical": "Есхар",
+      "canonical_en": "Yeskhar",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Эсхар",
+        "Есхар",
+        "Эсхара"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Нова Покровка",
+      "canonical_en": "Nova Pokrovka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Новопокровку",
+        "Новопокровка"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Шевченкове",
+      "canonical_en": "Shevchenkove",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Шевченково",
+        "Шевченкова"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "canonical": "Андріївка",
+      "canonical_en": "Andriyivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Андреевка",
+        "Андреевки"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Старий Оскол (маршрут)",
+      "canonical_en": "Stary Oskol (origin marker)",
+      "type": "city_ru",
+      "aliases": [
+        "Старого Оскола",
+        "КуНР"
+      ],
+      "notes": "КуНР = likely 'Курська НаРодна' (Kursk region) — launch origin direction",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Тетлега",
+      "canonical_en": "Tetleha",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Тетлегу",
+        "Тетлега",
+        "Тетлеги"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Велика Бабка",
+      "canonical_en": "Velyka Babka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "В Бабку",
+        "В Бабке",
+        "В Бабка",
+        "В. Бабка"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Кочеток",
+      "canonical_en": "Kochetok",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Кочеток",
+        "Кочетка"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Шестакове",
+      "canonical_en": "Shestakove",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Шестаково",
+        "Шестакова"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Терновій (Вовчанський р-н)",
+      "canonical_en": "Ternova (Vovchansk raion)",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Терновую",
+        "Терновая",
+        "Терновой"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Колодязь / З.Колодязь",
+      "canonical_en": "Kolodyaz",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "З Колодязь",
+        "З Колодец",
+        "Колодязь",
+        "Б Колодец"
+      ],
+      "notes": "З = Західний (Western), Б = Більшовик or specific village name",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Ольховка",
+      "canonical_en": "Olkhivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Ольховку",
+        "Ольховки",
+        "Ольховка"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Чкаловське",
+      "canonical_en": "Chkalovske",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Чкаловское"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Балаклія",
+      "canonical_en": "Balakliia",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Балаклея",
+        "Балаклеи",
+        "Балаклее"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Ізюм",
+      "canonical_en": "Izium",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Изюм",
+        "Изюма",
+        "Изюмский",
+        "Изюмского"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "canonical": "Чорна Лозова",
+      "canonical_en": "Chorna Lozova",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Ч Лозовую",
+        "Ч Лозовой",
+        "Ч. Лозовую",
+        "Ч Лозовая",
+        "Ч.Лозовую"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Руська Лозова",
+      "canonical_en": "Ruska Lozova",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Р Лозовую",
+        "Р Лозовой",
+        "Р. Лозовую",
+        "Р Лозовая",
+        "Р.Лозовая"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Лозова",
+      "canonical_en": "Lozova",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Лозовая",
+        "Лозовой",
+        "Лозовую"
+      ],
+      "notes": "Ambiguous — could be Lozova city or Ruska/Chorna Lozova settlements",
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Кам'яна Яруга",
+      "canonical_en": "Kamiana Yaruha",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "К. Яруга",
+        "К Яруга",
+        "К.Яруга",
+        "Каменная Яруга"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Мерефа",
+      "canonical_en": "Merefa",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Мерефа",
+        "Мерефу",
+        "Мерефой"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Змієв",
+      "canonical_en": "Zmiyiv",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Змиев",
+        "Змиева",
+        "Змиеве"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Есхар",
+      "canonical_en": "Yeskhar",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Эсхар"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Купʼянськ",
+      "canonical_en": "Kupyansk",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Купянск",
+        "Купянском"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "canonical": "Борки",
+      "canonical_en": "Borky",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Борки"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Донець (річка/орієнтир)",
+      "canonical_en": "Donets (river landmark)",
+      "type": "landmark",
+      "aliases": [
+        "Донец"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "canonical": "Валки",
+      "canonical_en": "Valky",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Валки",
+        "Валках"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "canonical": "Коломак",
+      "canonical_en": "Kolomak",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Коломак",
+        "Коломака"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Люботин",
+      "canonical_en": "Liubotyn",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Люботин",
+        "Люботина"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "canonical": "Слобожанське",
+      "canonical_en": "Slobozhansky",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Слобожанское",
+        "Слобожанского",
+        "Солобожанское"
+      ],
+      "notes": "Солобожанское = typo",
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Водолага",
+      "canonical_en": "Vodolaha",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Водолага",
+        "Водолагу",
+        "Водолаги"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Кегичівка",
+      "canonical_en": "Kehychivka",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Кегичевку",
+        "Кегичевка",
+        "Кегичівку"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Зачепилівка",
+      "canonical_en": "Zachepylivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Зачепиловку",
+        "Зачепиловка"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Перша Покровка / Краснопавлівка",
+      "canonical_en": "Krasnopavlivka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Краснопавловка",
+        "Краснопавловки"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Орелька",
+      "canonical_en": "Orelka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Орелька",
+        "Орельку"
+      ],
+      "confidence": 0.88
+    },
+    {
+      "canonical": "Красноград",
+      "canonical_en": "Krasnograd",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Красноград",
+        "Краснограда"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "canonical": "Сахновщина",
+      "canonical_en": "Sakhnovshchyna",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Сахновщина",
+        "Сахновщины"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "Першотравневий",
+      "canonical_en": "Pershotravnevy",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Первомайский",
+        "Первомайского"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Барвінкове",
+      "canonical_en": "Barvinkove",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Барвенково",
+        "Барвенкова"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "canonical": "Близнюки",
+      "canonical_en": "Blyzniuky",
+      "type": "city",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Близнюки",
+        "Близнюков"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "canonical": "Берека / Перещепне (зах)",
+      "canonical_en": "Pereshchepne (West oblast)",
+      "type": "settlement",
+      "aliases": [
+        "Пересечное"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "canonical": "Берека (Жовтневе)",
+      "canonical_en": "Bereka",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Берека",
+        "Березовка",
+        "Березівка"
+      ],
+      "confidence": 0.78
+    },
+    {
+      "canonical": "Пролісне",
+      "canonical_en": "Prolisne",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Пролесное"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "canonical": "Савинці",
+      "canonical_en": "Savyntsi",
+      "type": "settlement",
+      "oblast": "Kharkiv",
+      "aliases": [
+        "Савинцы",
+        "Савинцев"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "canonical": "БНР (Бєлгородська Народна Республіка)",
+      "canonical_en": "BNR (Belgorod Oblast direction)",
+      "type": "direction_marker",
+      "aliases": [
+        "БНР",
+        "ГовноБНР",
+        "з БНР",
+        "над БНР"
+      ],
+      "notes": "Sarcastic/shorthand for Russia/Belgorod Oblast; used to mark origin direction",
+      "confidence": 0.98
+    },
+    {
+      "canonical": "Окружна (дорога)",
+      "canonical_en": "Kharkiv ring road (Okruzhna)",
+      "type": "road",
+      "aliases": [
+        "окружной",
+        "вдоль окружной",
+        "Окружная"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "canonical": "МиХуй-31 (МиГ-31 перехоплювач)",
+      "canonical_en": "MiG-31 interceptor",
+      "type": "friendly_aircraft",
+      "aliases": [
+        "МиХуй-31",
+        "Михуй-31"
+      ],
+      "notes": "Derogatory nickname for MiG-31 friendly interceptor aircraft",
+      "confidence": 0.95
+    }
+  ],
+  "weapon_dictionary": [
+    {
+      "canonical": "shahed",
+      "label": "Shahed/Geran drone",
+      "aliases": [
+        "Шаболда",
+        "шаболда",
+        "Шаболды",
+        "шаболды",
+        "шаболдам",
+        "шаболдах",
+        "Шахед",
+        "шахед",
+        "Шахедів",
+        "шахедов",
+        "Реактивная шаболда",
+        "реактивная шаболда",
+        "Р шаболда",
+        "Р Шаболда"
+      ],
+      "notes": "Шаболда = most common slang for Shahed-136/131. 'Реактивна шаболда' = faster variant (Shahed-238 or similar); 'Р шаболда' = reactive/fast shahed",
+      "confidence": 0.97
+    },
+    {
+      "canonical": "bpla",
+      "label": "Unidentified UAV",
+      "aliases": [
+        "БПЛА неизвестного типа",
+        "БПЛА неизвестного",
+        "БПЛА неизвестно типа",
+        "БПЛа неизвестного типа",
+        "БПЛП неизвестного типа",
+        "БПЛА",
+        "Ударный БПЛА",
+        "ударный БПЛА",
+        "ударный",
+        "Ударный",
+        "Группа БПЛА",
+        "группа БПЛА"
+      ],
+      "notes": "БПЛП = typo of БПЛА; Ударный = strike UAV (sub-type of bpla)",
+      "confidence": 0.92
+    },
+    {
+      "canonical": "fpv",
+      "label": "FPV drone",
+      "aliases": [
+        "FPV",
+        "fpv"
+      ],
+      "notes": "First-person-view attack drone; small, fast, high maneuverability",
+      "confidence": 0.99
+    },
+    {
+      "canonical": "molniya",
+      "label": "Molniya UAV (reconnaissance/strike)",
+      "aliases": [
+        "Молния",
+        "молния",
+        "Молнию",
+        "молнию",
+        "Молния/",
+        "Молнией"
+      ],
+      "notes": "Molniya = RU-produced attack/recon drone. In messages often starts as 'unknown' then updated to 'молния'. Also name of RU drone factory in Taganrog.",
+      "confidence": 0.93
+    },
+    {
+      "canonical": "bpla_recon",
+      "label": "Reconnaissance UAV",
+      "aliases": [
+        "Развед.",
+        "развед.",
+        "Развед. БПЛА",
+        "Развед БПЛА",
+        "Суперкам",
+        "Zala",
+        "Zala БПЛА",
+        "зала",
+        "Зала"
+      ],
+      "notes": "Развед. = reconnaissance. Суперкам = SuperCam fixed-wing recon drone. Zala/Зала = ZALA Aero group recon UAV",
+      "confidence": 0.92
+    },
+    {
+      "canonical": "lancet",
+      "label": "Lancet loitering munition",
+      "aliases": [
+        "Ланцет",
+        "ланцет",
+        "БПЛА Ланцет",
+        "угроза БПЛА Ланцет"
+      ],
+      "notes": "Lancet = RU Lancet-3 loitering munition; typically paired with Zala recon",
+      "confidence": 0.97
+    },
+    {
+      "canonical": "v2u",
+      "label": "V2U group drone swarm",
+      "aliases": [
+        "V2U",
+        "БПЛА V2U",
+        "группа V2U"
+      ],
+      "notes": "V2U = likely operational designation for specific drone type or formation used in this channel; possibly Shahed sub-variant or local tracking code",
+      "confidence": 0.7
+    },
+    {
+      "canonical": "kab",
+      "label": "KAB glide bomb",
+      "aliases": [
+        "КАБ",
+        "КАб",
+        "КАБів"
+      ],
+      "notes": "KAB-500/1500 — Russian guided aerial bombs; launched by Su-34/Su-35. Петухи = su-34/35 aircraft",
+      "confidence": 0.98
+    },
+    {
+      "canonical": "rszo",
+      "label": "MLRS (РСЗО)",
+      "aliases": [
+        "РСЗО",
+        "запуски РСЗО",
+        "РСЗО на"
+      ],
+      "notes": "Multiple-launch rocket system; Grad, Uragan, Tornado. Often threat to northern suburbs/oblast.",
+      "confidence": 0.97
+    },
+    {
+      "canonical": "missile",
+      "label": "Cruise missile (KR)",
+      "aliases": [
+        "КР",
+        "Крылатая ракета",
+        "крылатой ракеты",
+        "крылатые ракеты"
+      ],
+      "notes": "КР = крилата ракета (cruise missile). Separate from ballistic.",
+      "confidence": 0.95
+    },
+    {
+      "canonical": "ballistic",
+      "label": "Ballistic missile",
+      "aliases": [
+        "баллистика",
+        "по баллистике",
+        "тревога по баллистике",
+        "баллистическая",
+        "угроза баллистики"
+      ],
+      "notes": "Ballistic threat — Iskander, S-300 repurposed, etc. Launch markers include Taganrog, Stary Oskol, Rostov",
+      "confidence": 0.95
+    },
+    {
+      "canonical": "s300",
+      "label": "S-300 (repurposed surface-to-surface)",
+      "aliases": [],
+      "notes": "Not directly named in messages; ballistic alerts from Taganrog/Rostov often correspond to S-300 use",
+      "confidence": 0.6
+    },
+    {
+      "canonical": "petukhy",
+      "label": "Петухи (Russian strike aircraft — Su-34/35)",
+      "aliases": [
+        "Петухи",
+        "петухи",
+        "тактические петухи",
+        "Тактические петухи"
+      ],
+      "notes": "Slang for RU strike aircraft; 'петухи заходят на пуски' = aircraft making attack run for KAB release",
+      "confidence": 0.95
+    },
+    {
+      "canonical": "herbera",
+      "label": "Гербера (unidentified/special drone type)",
+      "aliases": [
+        "гербера",
+        "Гербера"
+      ],
+      "notes": "Appears once: 'это гербера, локационно не фиксируется' — possibly a stealth or low-observable drone; rare; unconfirmed type",
+      "confidence": 0.55
+    },
+    {
+      "canonical": "perkhopchyk",
+      "label": "Перехватчик (friendly interceptor)",
+      "aliases": [
+        "перехватчики",
+        "наши перехватчики",
+        "добрые БПЛА",
+        "добрые дроны"
+      ],
+      "notes": "Friendly assets — interceptor aircraft or UA drones; 'добрые' = friendly/own",
+      "confidence": 0.9
+    }
+  ],
+  "phrase_patterns": [
+    {
+      "intent": "heading_change",
+      "description": "Unit changes heading/course",
+      "patterns": [
+        "довернул(а)? на <LOCATION>",
+        "развернул(ся|ась|ись) на <LOCATION>",
+        "взял(а)? курс на <LOCATION>",
+        "повернул(а)? на <LOCATION>",
+        "разогнулся на <LOCATION>",
+        "берёт курс на <LOCATION>"
+      ],
+      "examples": [
+        "Довернул на ХТЗ",
+        "Довернула на Ч. Лозовую",
+        "Развернулся на Основу",
+        "Взяла курс на Ковяги",
+        "Повернул на Основу",
+        "Разогнулся на Песочин"
+      ],
+      "regex": "(?:довернул[а]?|развернул(?:ся|ась|ись)|взял[а]?\\s+курс|повернул[а]?|разогнулся)\\s+на\\s+(.+)"
+    },
+    {
+      "intent": "current_location",
+      "description": "Current position of unit",
+      "patterns": [
+        "над <LOCATION>",
+        "<N> <LOCATION>",
+        "локационно <LOCATION>",
+        "кружит <LOCATION>",
+        "кружит в районе <LOCATION>",
+        "кружит над <LOCATION>",
+        "над <LOCATION>, курс <LOCATION>",
+        "над <LOCATION>, далее <LOCATION>"
+      ],
+      "examples": [
+        "Над Аэропортом, курс Жихорь",
+        "1 ХТЗ",
+        "Кружит в районе Безлюдовки",
+        "Кружит МД/Сортировка",
+        "Локационно 1 на Центр"
+      ],
+      "regex": "(?:над|кружит(?:\\s+(?:в\\s+районе|над|западнее|севернее|южнее|восточнее))?|локационно)\\s+(.+)"
+    },
+    {
+      "intent": "via_location",
+      "description": "Unit passing through or moving via a waypoint",
+      "patterns": [
+        "далее <LOCATION>",
+        "далее на <LOCATION>",
+        "далее курс <LOCATION>",
+        "далее курс на <LOCATION>",
+        "через <LOCATION>",
+        "через <LOCATION> группа",
+        "вдоль окружной на <LOCATION>",
+        "летит курсом <LOCATION>",
+        "летит ближе к <LOCATION>"
+      ],
+      "examples": [
+        "Далее Рогань",
+        "Далее на Дергачи/МД",
+        "Через Циркуны группа(4-7 шт.) V2U на СС",
+        "Вдоль окружной на Лесное",
+        "Летит ближе к Веселому"
+      ],
+      "regex": "(?:далее(?:\\s+(?:курс\\s+)?на?)?|через|вдоль\\s+окружной\\s+на|летит\\s+(?:курсом|ближе\\s+к))\\s+(.+)"
+    },
+    {
+      "intent": "continuation",
+      "description": "Repeated/ongoing threat or same target again",
+      "patterns": [
+        "снова курс <LOCATION>",
+        "снова <LOCATION>",
+        "опять на <LOCATION>",
+        "повторные пуски",
+        "повторные пуски КАБ на <LOCATION>",
+        "заходят на повторные (пуски)",
+        "снова взял(а)? курс на <LOCATION>"
+      ],
+      "examples": [
+        "Снова курс Безлюдовка/Хорошево",
+        "Снова курс Аэропорт",
+        "Повторные пуски КАБ на Волчанск/район",
+        "Заходят на повторные пуски по Боровой",
+        "Снова взяла курс на Ч Лозовую"
+      ],
+      "regex": "(?:снова(?:\\s+взял[а]?\\s+курс\\s+на)?|опять\\s+на|повторные\\s+пуски(?:\\s+КАБ)?\\s+на|заходят\\s+на\\s+повторные)\\s*(.*)"
+    },
+    {
+      "intent": "additional_unit",
+      "description": "New/additional unit detected",
+      "patterns": [
+        "ещё <N>",
+        "ещё <N> <LOCATION>",
+        "ещё <weapon> на <LOCATION>",
+        "следом ещё <N>",
+        "новая шаболда на <LOCATION>",
+        "ещё один (тем же) курсом",
+        "<N> новый(е) на <LOCATION>"
+      ],
+      "examples": [
+        "Ещё 1-2 через Циркуны на БД/СС",
+        "Следом ещё 2",
+        "Ещё шаболда на Малиновку/Эсхар",
+        "Новая шаболда на Краснокутск",
+        "1 новый на Бурлук/Приколотное"
+      ],
+      "regex": "(?:ещ[её]\\s+(?:\\d+[-\\d]*\\s+)?(?:шаболда[ы]?|БПЛА|молния|ударный)?|следом\\s+ещ[её]\\s+\\d+|новая\\s+шаболда)\\s*(?:на|курс[ом]?)?\\s*(.*)"
+    },
+    {
+      "intent": "correction",
+      "description": "Correction or type update to previous report",
+      "patterns": [
+        "Upd: <info>",
+        "upd: <info>",
+        "Upd. <info>",
+        "это <weapon_type>",
+        "отбой, это <type>",
+        "предварительно <status>"
+      ],
+      "examples": [
+        "Upd: молния ⚠️",
+        "Upd: ударный ⚠️",
+        "Upd: не наблюдается ⚠️",
+        "Upd: БПЛА Ланцет⚠️",
+        "Это БПЛА V2U курс на СС",
+        "Отбой, это Развед. Zala",
+        "Предварительно шаболда ⚠️"
+      ],
+      "regex": "(?:[Uu]pd[.:]\\s*|это\\s+|отбой,?\\s+это\\s+|предварительно\\s+)(.+)"
+    },
+    {
+      "intent": "impact",
+      "description": "Target hit, downed, or destroyed",
+      "patterns": [
+        "упал(а|и)?",
+        "предварительно упал(а|и)?",
+        "сбили",
+        "предварительно сбили",
+        "приземлили",
+        "задавили",
+        "упал(а|и)? в (области|районе)",
+        "второй упал/сбили"
+      ],
+      "examples": [
+        "Упал😔",
+        "Упала😔",
+        "Упали в области 😔",
+        "Сбили 🫡",
+        "Предварительно сбили 🫡",
+        "Приземлили 🫡",
+        "Задавили🫡",
+        "Предварительно упал 😔"
+      ],
+      "regex": "(?:упал[иа]?|предварительно\\s+(?:упал[иа]?|сбили)|сбили|приземлили|задавили)(?:\\s+в\\s+(?:области|районе))?"
+    },
+    {
+      "intent": "clear_status",
+      "description": "Area cleared / threat passed / all clear",
+      "patterns": [
+        "не наблюдается",
+        "больше не наблюдается",
+        "локационно не фиксируется",
+        "отбой",
+        "отбой для города",
+        "чисто",
+        "без угрозы",
+        "на сейчас чисто",
+        "без угрозы для города",
+        "вылетел(а) из города",
+        "вылетел(а) в <область>"
+      ],
+      "examples": [
+        "Не наблюдается ⚠️",
+        "Отбой❤️",
+        "Отбой для города ❤️",
+        "На сейчас в области и над городом чисто 🫡",
+        "Без угрозы для города 🫡",
+        "Вылетело из города на Ч. Лозовую/Дергачи"
+      ],
+      "regex": "(?:не\\s+наблюдается|больше\\s+не\\s+(?:наблюдается|фиксируется)|локационно\\s+не\\s+фиксируется|отбой(?:\\s+для\\s+\\S+)?|(?:на\\s+сейчас\\s+)?чисто|без\\s+угрозы(?:\\s+для\\s+\\S+)?|вылетел[оа]\\s+(?:из\\s+города|в\\s+\\S+))"
+    },
+    {
+      "intent": "acoustic_observation",
+      "description": "Auditory/acoustic detection (no visual)",
+      "patterns": [
+        "акустически <weapon> на/в <LOCATION>",
+        "акустически в районе <LOCATION>"
+      ],
+      "examples": [
+        "Акустически шаболда на Змиев/район",
+        "Акустически ещё 1 в районе Баварии",
+        "Акустически шаболда на ЛГ/ХГ"
+      ],
+      "regex": "акустически\\s+(.+)"
+    },
+    {
+      "intent": "situational_summary",
+      "description": "Multi-target location summary",
+      "patterns": [
+        "локационно [\\n]? <N> <LOCATION>",
+        "на сейчас локационно",
+        "по шаболдам <N> <LOCATION>",
+        "по области <N> <LOCATION>"
+      ],
+      "examples": [
+        "Локационно\\n2 Тюринка/Центр/Металлист⚠️\\n2 СС/Салтовка⚠️",
+        "На сейчас:\n1 Шевченково\n3 с БНР курс на Золочев",
+        "По области:\n3 Андреевка⚠️\n1 Змиев⚠️"
+      ],
+      "regex": "(?:локационно|по\\s+шаболдам|по\\s+области|на\\s+сейчас\\s+локационно)[\\s\\n]+(.+)"
+    },
+    {
+      "intent": "launch_alert",
+      "description": "Incoming launch / aircraft making attack run",
+      "patterns": [
+        "петухи заходят на пуски по <LOCATION>",
+        "заходят на пуски по <LOCATION>",
+        "активность пусковых",
+        "запуски РСЗО по <LOCATION>",
+        "пуски по <LOCATION>",
+        "угроза РСЗО для <LOCATION>",
+        "тревога по баллистике с <ORIGIN>"
+      ],
+      "examples": [
+        "Петухи заходят на пуски по северной части области",
+        "Заходят на пуски по Козачке/Золочеву",
+        "Угроза РСЗО для северной части области/пригорода",
+        "Запуски РСЗО по северной части области",
+        "Тревога по баллистике с Таганрога"
+      ],
+      "regex": "(?:петухи\\s+заходят\\s+на\\s+пуски\\s+по|заходят\\s+на\\s+пуски\\s+по|активность\\s+пусковых|запуски\\s+РСЗО\\s+по|угроза\\s+РСЗО\\s+для|тревога\\s+по\\s+баллистике\\s+с)\\s+(.+)"
+    }
+  ],
+  "top_ambiguous_terms": [
+    {
+      "term": "СС",
+      "possible_mappings": [
+        "Салтівка",
+        "Північна Салтівка",
+        "Салтова"
+      ],
+      "frequency": 23,
+      "resolution": "Context clue: if paired with БД → Saltivka district. If alone → likely Severnaya Saltivka",
+      "priority": "HIGH"
+    },
+    {
+      "term": "БД",
+      "possible_mappings": [
+        "Бєлгородська Дорога (Белгородское шоссе)",
+        "Болотяна Дача?",
+        "unknown district"
+      ],
+      "frequency": 20,
+      "resolution": "Often paired with СС/Жуки — likely refers to a northeastern Kharkiv zone along Belhorodska road. Needs geo confirmation.",
+      "priority": "HIGH"
+    },
+    {
+      "term": "МД",
+      "possible_mappings": [
+        "Мала Данилівка"
+      ],
+      "frequency": 22,
+      "resolution": "High confidence it = Мала Данилівка (settlement north of Kharkiv). Confirm with map.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "ПП",
+      "possible_mappings": [
+        "Площа Повстання (metro)",
+        "Промислове підприємство?"
+      ],
+      "frequency": 14,
+      "resolution": "Most likely Ploshcha Povstannia — central Kharkiv metro/square area. Geo confirm.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "НД",
+      "possible_mappings": [
+        "Немишля/Докучаєвське",
+        "Нова Данилівка?"
+      ],
+      "frequency": 13,
+      "resolution": "Context: pairs with Немышля → Nemyshlya/Dokuchayevske corridor. Needs map anchor.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "ХГ",
+      "possible_mappings": [
+        "Холодна Гора",
+        "Харківська Гора?"
+      ],
+      "frequency": 10,
+      "resolution": "Most likely Kholodna Hora district. Confirm with map.",
+      "priority": "LOW"
+    },
+    {
+      "term": "ЛГ",
+      "possible_mappings": [
+        "Лєнінська Гора",
+        "Лісова Галявина?"
+      ],
+      "frequency": 12,
+      "resolution": "Likely Leninska Hora (Lenin Hill area, west Kharkiv). Confirm.",
+      "priority": "LOW"
+    },
+    {
+      "term": "РЖМ",
+      "possible_mappings": [
+        "Ржевський мікрорайон",
+        "Rzhevka settlement"
+      ],
+      "frequency": 9,
+      "resolution": "Paired with ХТЗ — likely Rzhevsky microrayon east of ХТЗ. Needs geo anchor.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "Молния",
+      "possible_mappings": [
+        "drone_type:molniya",
+        "term_for_unknown_fast_UAV"
+      ],
+      "frequency": 83,
+      "resolution": "Often appears as type update. Initially 'unknown' then 'молния'. Confirmed RU-produced drone (Molniya). Also has factory named Atlant-Aero in Taganrog.",
+      "priority": "HIGH"
+    },
+    {
+      "term": "Малиновка",
+      "possible_mappings": [
+        "Малинівка (Харків, district)",
+        "Малинівка (Чугуївський р-н)"
+      ],
+      "frequency": 20,
+      "resolution": "Disambiguate by trajectory: city-context messages → Kharkiv district; paired with Чугуїв/Есхар → Chuhuiv raion village",
+      "priority": "HIGH"
+    },
+    {
+      "term": "V2U",
+      "possible_mappings": [
+        "specific UAV designation",
+        "formation code",
+        "Shahed variant"
+      ],
+      "frequency": 8,
+      "resolution": "Appears as 'БПЛА V2U' in group swarm context. Possibly a local tracker designation for Shahed-type or Orlan. Needs source confirmation.",
+      "priority": "HIGH"
+    },
+    {
+      "term": "КуНР",
+      "possible_mappings": [
+        "Курська Народна Республіка (Kursk Oblast)",
+        "Kreminna?"
+      ],
+      "frequency": 1,
+      "resolution": "Context: 'тревога по баллистике с КуНР' → launch from Kursk Oblast. Treat as origin:kursk.",
+      "priority": "LOW"
+    },
+    {
+      "term": "Гербера",
+      "possible_mappings": [
+        "unknown drone type",
+        "stealth UAV"
+      ],
+      "frequency": 1,
+      "resolution": "Single occurrence: 'це гербера, локаційно не фіксується' — possibly a low-RCS or fast drone not tracked by station. Needs monitoring.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "Питомник",
+      "possible_mappings": [
+        "Pitomnyk settlement (north Kharkiv)",
+        "railway station Pitomnyk"
+      ],
+      "frequency": 35,
+      "resolution": "Consistently used as northern approach waypoint — likely Pitomnyk station area near Derhachi. Confirm geo anchor.",
+      "priority": "MEDIUM"
+    },
+    {
+      "term": "Реактивна шаболда",
+      "possible_mappings": [
+        "Shahed-238 (jet-powered)",
+        "modified Shahed",
+        "Geran-3?"
+      ],
+      "frequency": 8,
+      "resolution": "The operator distinguishes 'reactive shahed' explicitly from standard. Likely Shahed-238 jet variant. Treat as shahed subtype with speed flag.",
+      "priority": "HIGH"
+    }
+  ],
+  "priority_hotspots": [
+    {
+      "canonical": "Богодухів",
+      "canonical_en": "Bohodukhiv",
+      "mention_count": 186,
+      "threat_types": [
+        "shahed",
+        "bpla",
+        "bpla_recon"
+      ],
+      "notes": "Highest-frequency target. Under near-continuous drone harassment (low-altitude 40-60m reported). All fuel stations reportedly destroyed. Major northwest hub.",
+      "priority_rank": 1
+    },
+    {
+      "canonical": "Золочів",
+      "canonical_en": "Zolochiv",
+      "mention_count": 143,
+      "threat_types": [
+        "shahed",
+        "kab",
+        "fpv",
+        "bpla_recon",
+        "molniya"
+      ],
+      "notes": "Second-highest frequency. Key waypoint north/northwest of Kharkiv. KAB strikes and Zala recon regularly mentioned. Multiple FPV strikes noted.",
+      "priority_rank": 2
+    },
+    {
+      "canonical": "Вовчанськ",
+      "canonical_en": "Vovchansk",
+      "mention_count": 47,
+      "threat_types": [
+        "kab",
+        "rszo"
+      ],
+      "notes": "Consistent KAB strike target, repeated salvos. Frontline proximity.",
+      "priority_rank": 3
+    },
+    {
+      "canonical": "Харківський аеропорт (Основа)",
+      "canonical_en": "Kharkiv Airport (Osnova)",
+      "mention_count": 40,
+      "threat_types": [
+        "shahed",
+        "bpla"
+      ],
+      "notes": "Repeated drone approaches and circling. Key southern Kharkiv landmark and trajectory waypoint.",
+      "priority_rank": 4
+    },
+    {
+      "canonical": "Прудянка",
+      "canonical_en": "Prudyanka",
+      "mention_count": 53,
+      "threat_types": [
+        "shahed",
+        "molniya",
+        "bpla",
+        "fpv"
+      ],
+      "notes": "Northwestern approach corridor node. Very frequent recon and strike drone mention.",
+      "priority_rank": 5
+    },
+    {
+      "canonical": "Ольшани",
+      "canonical_en": "Olshany",
+      "mention_count": 42,
+      "threat_types": [
+        "shahed"
+      ],
+      "notes": "West-northwest transit hub. Shahed swarms frequently route through here.",
+      "priority_rank": 6
+    },
+    {
+      "canonical": "Слатине",
+      "canonical_en": "Slatyne",
+      "mention_count": 50,
+      "threat_types": [
+        "shahed",
+        "molniya",
+        "bpla"
+      ],
+      "notes": "Northern approach corridor. Paired frequently with Bezruky/Derhachi.",
+      "priority_rank": 7
+    },
+    {
+      "canonical": "Дергачі",
+      "canonical_en": "Derhachi",
+      "mention_count": 38,
+      "threat_types": [
+        "shahed",
+        "bpla_recon",
+        "molniya"
+      ],
+      "notes": "Northern ring node. Frequent recon drone presence (Zala).",
+      "priority_rank": 8
+    },
+    {
+      "canonical": "Купʼянськ",
+      "canonical_en": "Kupyansk",
+      "mention_count": 26,
+      "threat_types": [
+        "kab"
+      ],
+      "notes": "Repeated KAB strike target (eastern oblast).",
+      "priority_rank": 9
+    },
+    {
+      "canonical": "Циркуни",
+      "canonical_en": "Tsyrkuny",
+      "mention_count": 32,
+      "threat_types": [
+        "bpla",
+        "lancet"
+      ],
+      "notes": "Northeast Kharkiv entry corridor. V2U swarm groups transit through here en route to city.",
+      "priority_rank": 10
+    },
+    {
+      "canonical": "Ліпці / Веселе",
+      "canonical_en": "Liptsi / Vesele",
+      "mention_count": 30,
+      "threat_types": [
+        "shahed",
+        "kab",
+        "rszo"
+      ],
+      "notes": "Northern border area; KAB and MLRS targets. High escalation zone.",
+      "priority_rank": 11
+    },
+    {
+      "canonical": "Пітомник",
+      "canonical_en": "Pitomnyk",
+      "mention_count": 35,
+      "threat_types": [
+        "shahed",
+        "molniya",
+        "bpla_recon"
+      ],
+      "notes": "Northern transit node for drones approaching Derhachi/Slaty ne corridor.",
+      "priority_rank": 12
+    }
+  ]
+}
