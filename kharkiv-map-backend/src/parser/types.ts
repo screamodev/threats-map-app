@@ -9,6 +9,11 @@ export type WeaponType =
   | 'kab'
   | 'iskander'
   | 'missile'
+  | 'fpv'
+  | 'molniya'
+  | 'lancet'
+  | 'ballistic'
+  | 'rszo'
   | 'unknown';
 
 export interface ParsedEvent {
@@ -30,6 +35,16 @@ export interface ParsedEvent {
   continuesIncidentId?: string | null;
   /** 0–1; 0 = unrelated to prior incidents. From OpenAI only. */
   continuationConfidence?: number;
+  /** Follow-up intent marker (e.g., "далее", "уже возле", "ще"). */
+  isFollowup?: boolean;
+  /** Delta to apply to tracked count when message says "one more". */
+  countDelta?: number;
+  /** Lexicon-derived phrase intent hints used by correlator scoring. */
+  phraseIntents?: string[];
+  /** Reply linkage from Telegram message metadata, if known. */
+  replyToTelegramId?: number | null;
+  /** Telegram media grouping id (album/thread-like grouping), if known. */
+  groupedId?: number | null;
 }
 
 export const WEAPON_LABELS: Record<WeaponType, string> = {
@@ -39,6 +54,11 @@ export const WEAPON_LABELS: Record<WeaponType, string> = {
   kab: 'КАБ',
   iskander: 'Іскандер',
   missile: 'Ракета',
+  fpv: 'FPV-дрон',
+  molniya: 'Молнія',
+  lancet: 'Ланцет',
+  ballistic: 'Балістика',
+  rszo: 'РСЗВ',
   unknown: 'Невідомо',
 };
 
@@ -50,6 +70,11 @@ export const WEAPON_SPEED_KMH: Record<WeaponType, number> = {
   kab: 900,
   iskander: 2100,
   missile: 900,
+  fpv: 120,
+  molniya: 220,
+  lancet: 300,
+  ballistic: 2500,
+  rszo: 700,
   unknown: 200,
 };
 
@@ -60,5 +85,10 @@ export const WEAPON_COLORS: Record<WeaponType, string> = {
   kab: '#ff8800',
   iskander: '#ff2266',
   missile: '#ff4444',
+  fpv: '#ffb020',
+  molniya: '#ffa000',
+  lancet: '#cc5500',
+  ballistic: '#ff0033',
+  rszo: '#ff6644',
   unknown: '#888888',
 };

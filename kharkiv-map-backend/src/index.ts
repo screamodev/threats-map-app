@@ -10,8 +10,18 @@ import {
   broadcastIncidentExpire,
   broadcastDistrictRisk,
 } from './api/ws.js';
-import { computeDistrictRisk } from './districts/risk.js';
+import { applyNonDroneDistrictAlert, computeDistrictRisk } from './districts/risk.js';
 import { config } from './config.js';
+import type { WeaponType } from './parser/types.js';
+
+const TRACKED_AERIAL_WEAPON_TYPES = new Set<WeaponType>([
+  'bpla',
+  'shahed',
+  'molniya',
+  'fpv',
+  'lancet',
+  'unknown',
+]);
 
 function recomputeAndBroadcastDistrictRisk(): void {
   const active = getActiveLiveIncidents();
@@ -26,16 +36,11 @@ async function main() {
   console.log('[init] Database initialized at:', config.dbPath);
   getDb();
 
-  // Seed gazetteer if empty
-  const { getAllGazetteerEntries } = await import('./db/client.js');
-  if (getAllGazetteerEntries().length === 0) {
-    console.log('[init] Seeding gazetteer...');
-    seedGazetteer();
-    console.log('[init] Gazetteer seeded');
-  } else {
-    rebuildAliasMap();
-    console.log('[init] Gazetteer loaded');
-  }
+  // Sync gazetteer from seed on each start so new aliases/places apply immediately.
+  console.log('[init] Syncing gazetteer seed...');
+  seedGazetteer();
+  rebuildAliasMap();
+  console.log('[init] Gazetteer synced');
 
   // Start API server
   await startServer();
@@ -43,8 +48,15 @@ async function main() {
   // Start Telegram listener (if configured)
   if (config.tg.apiId && config.tg.apiHash) {
     try {
-      await startListening(async (text, rawMessageId, channelName, timestamp) => {
-        const event = await parseMessage(text, rawMessageId, channelName, timestamp);
+      await startListening(async (text, rawMessageId, channelName, timestamp, replyToTelegramId, groupedId) => {
+        const event = await parseMessage(
+          text,
+          rawMessageId,
+          channelName,
+          timestamp,
+          replyToTelegramId,
+          groupedId,
+        );
         if (!event) {
           console.log(`[pipeline] parse returned null for msg ${rawMessageId} (security filter, no useful fields, or LLM disabled)`);
           return;
@@ -52,8 +64,24 @@ async function main() {
         console.log(
           `[pipeline] parsed event: type=${event.eventType} weapon=${event.weaponType}x${event.weaponCount} ` +
           `loc=${event.location?.canonicalName ?? '-'} heading=${event.heading?.canonicalName ?? '-'} ` +
-          `via=${event.via?.canonicalName ?? '-'} conf=${event.confidence.toFixed(2)} layer=${event.parserLayer}`,
+          `via=${event.via?.canonicalName ?? '-'} ` +
+          `loc@=${event.location ? `${event.location.lat.toFixed(4)},${event.location.lng.toFixed(4)}` : '-'} ` +
+          `head@=${event.heading ? `${event.heading.lat.toFixed(4)},${event.heading.lng.toFixed(4)}` : '-'} ` +
+          `conf=${event.confidence.toFixed(2)} layer=${event.parserLayer}`,
         );
+
+        if (!TRACKED_AERIAL_WEAPON_TYPES.has(event.weaponType)) {
+          if (event.eventType !== 'all_clear') {
+            const affectedDistricts = applyNonDroneDistrictAlert(event);
+            console.log(
+              `[pipeline] non-drone alert mapped to districts (${affectedDistricts.length}) weapon=${event.weaponType} event=${event.eventType}`,
+            );
+            recomputeAndBroadcastDistrictRisk();
+          } else {
+            console.log('[pipeline] skipping non-drone all-clear event');
+          }
+          return;
+        }
 
         const result = correlateEvent(event);
         if (!result) {
@@ -64,6 +92,22 @@ async function main() {
           `[pipeline] correlator action=${result.action} incidentId=${result.incident.id} ` +
           `trajectoryPoints=${result.incident.trajectory.length} status=${result.incident.status}`,
         );
+        console.log(
+          `[pipeline] continuation decision reason=${result.diagnostics.decisionReason} ` +
+          `best=${result.diagnostics.bestScore.toFixed(2)} second=${result.diagnostics.secondBestScore.toFixed(2)} ` +
+          `threshold=${result.diagnostics.attachThreshold.toFixed(2)} ` +
+          `eventHasGeo=${result.diagnostics.eventHasGeo} weakGeoFollowup=${result.diagnostics.weakGeoFollowup} ` +
+          `countDeltaApplied=${result.diagnostics.countDeltaApplied}`,
+        );
+        if (result.diagnostics.candidateScores.length > 0) {
+          const topCandidates = result.diagnostics.candidateScores
+            .map((candidate, idx) => (
+              `${idx + 1})${candidate.incidentId}:${candidate.score.toFixed(2)}[` +
+              `${candidate.reasons.join('|') || '-'}]`
+            ))
+            .join(' ; ');
+          console.log(`[pipeline] continuation candidates ${topCandidates}`);
+        }
 
         if (result.action === 'new') {
           broadcastNewIncident(result.incident);

@@ -10,7 +10,24 @@ export type MessageCallback = (
   rawMessageId: number,
   channelName: string,
   timestamp: number,
+  replyToTelegramId?: number | null,
+  groupedId?: number | null,
 ) => void;
+
+function toNumericOrNull(value: unknown): number | null {
+  if (value == null) return null;
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'bigint') return Number(value);
+  if (typeof value === 'string' && value.trim() !== '') {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+  if (typeof value === 'object' && value && 'toString' in value && typeof value.toString === 'function') {
+    const n = Number(value.toString());
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
 
 export async function startListening(onMessage: MessageCallback): Promise<void> {
   const client = await getTelegramClient();
@@ -116,6 +133,12 @@ export async function startListening(onMessage: MessageCallback): Promise<void> 
     const channelName = channelNameMap.get(rawChannelId) || 'unknown';
     const text = message.text;
     const timestamp = message.date || Math.floor(Date.now() / 1000);
+    const replyToTelegramId = toNumericOrNull(
+      (message as unknown as { replyTo?: { replyToMsgId?: unknown } }).replyTo?.replyToMsgId,
+    );
+    const groupedId = toNumericOrNull(
+      (message as unknown as { groupedId?: unknown }).groupedId,
+    );
 
     const rawId = insertRawMessage(
       message.id,
@@ -123,11 +146,13 @@ export async function startListening(onMessage: MessageCallback): Promise<void> 
       channelName,
       text,
       timestamp,
+      replyToTelegramId,
+      groupedId,
     );
 
     if (rawId > 0) {
       console.log(`[telegram] New message from ${channelName}: ${text.slice(0, 80)}...`);
-      onMessage(text, rawId, channelName, timestamp);
+      onMessage(text, rawId, channelName, timestamp, replyToTelegramId, groupedId);
     } else if (debug) {
       console.log('[telegram:debug] duplicate message (ignored by INSERT OR IGNORE)');
     }
@@ -179,10 +204,14 @@ export async function startListening(onMessage: MessageCallback): Promise<void> 
             continue;
           }
           const ts = m.date || Math.floor(Date.now() / 1000);
-          const rawId = insertRawMessage(mid, c.id, c.name, text, ts);
+          const replyToTelegramId = toNumericOrNull(
+            (m as unknown as { replyTo?: { replyToMsgId?: unknown } }).replyTo?.replyToMsgId,
+          );
+          const groupedId = toNumericOrNull((m as unknown as { groupedId?: unknown }).groupedId);
+          const rawId = insertRawMessage(mid, c.id, c.name, text, ts, replyToTelegramId, groupedId);
           if (rawId > 0) {
             console.log(`[telegram:poll] New message from ${c.name}: ${text.slice(0, 80)}...`);
-            onMessage(text, rawId, c.name, ts);
+            onMessage(text, rawId, c.name, ts, replyToTelegramId, groupedId);
           } else if (debug) {
             console.log(`[telegram:poll] ${c.name} msg ${mid} already stored (dedup)`);
           }

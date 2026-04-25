@@ -13,8 +13,33 @@ export function getDb(): Database.Database {
     db = new Database(config.dbPath);
     const schema = readFileSync(join(__dirname, 'schema.sql'), 'utf-8');
     db.exec(schema);
+    ensureRawMessagesColumns(db);
+    ensureIncidentsColumns(db);
   }
   return db;
+}
+
+function ensureRawMessagesColumns(database: Database.Database): void {
+  const cols = database
+    .prepare("SELECT name FROM pragma_table_info('raw_messages')")
+    .all() as Array<{ name: string }>;
+  const names = new Set(cols.map((c) => c.name));
+  if (!names.has('reply_to_telegram_id')) {
+    database.exec('ALTER TABLE raw_messages ADD COLUMN reply_to_telegram_id INTEGER');
+  }
+  if (!names.has('grouped_id')) {
+    database.exec('ALTER TABLE raw_messages ADD COLUMN grouped_id INTEGER');
+  }
+}
+
+function ensureIncidentsColumns(database: Database.Database): void {
+  const cols = database
+    .prepare("SELECT name FROM pragma_table_info('incidents')")
+    .all() as Array<{ name: string }>;
+  const names = new Set(cols.map((c) => c.name));
+  if (!names.has('projection_anchor')) {
+    database.exec('ALTER TABLE incidents ADD COLUMN projection_anchor TEXT');
+  }
 }
 
 // --- Raw messages ---
@@ -25,13 +50,28 @@ export function insertRawMessage(
   channelName: string,
   text: string,
   timestamp: number,
+  replyToTelegramId: number | null = null,
+  groupedId: number | null = null,
 ): number {
   const stmt = getDb().prepare(`
-    INSERT OR IGNORE INTO raw_messages (telegram_id, channel_id, channel_name, text, timestamp)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT OR IGNORE INTO raw_messages (
+      telegram_id, reply_to_telegram_id, grouped_id, channel_id, channel_name, text, timestamp
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `);
-  const result = stmt.run(telegramId, channelId, channelName, text, timestamp);
-  return result.lastInsertRowid as number;
+  const result = stmt.run(
+    telegramId,
+    replyToTelegramId,
+    groupedId,
+    channelId,
+    channelName,
+    text,
+    timestamp,
+  );
+  // With INSERT OR IGNORE, lastInsertRowid can keep a previous unrelated value.
+  // Return 0 for duplicates so callers can reliably skip re-processing.
+  if ((result.changes as number) === 0) return 0;
+  return Number(result.lastInsertRowid);
 }
 
 export function markMessageProcessed(id: number, status: number = 1): void {
@@ -44,6 +84,8 @@ export function getUnprocessedMessages(limit: number = 50) {
     .all(limit) as Array<{
     id: number;
     telegram_id: number;
+    reply_to_telegram_id: number | null;
+    grouped_id: number | null;
     channel_id: number;
     channel_name: string;
     text: string;
@@ -170,6 +212,32 @@ export function setEventIncidentId(eventId: string, incidentId: string): void {
   getDb().prepare('UPDATE parsed_events SET incident_id = ? WHERE id = ?').run(incidentId, eventId);
 }
 
+/**
+ * Resolve an incident via a Telegram parent message link inside the same channel.
+ * Returns the most recent parsed event incident id for that parent telegram message.
+ */
+export function getIncidentIdByReplyParent(
+  channelName: string,
+  parentTelegramId: number,
+): string | null {
+  const row = getDb()
+    .prepare(
+      `
+    SELECT pe.incident_id AS incident_id
+    FROM raw_messages rm
+    JOIN parsed_events pe ON pe.raw_message_id = rm.id
+    WHERE rm.channel_name = ?
+      AND rm.telegram_id = ?
+      AND pe.filtered_out = 0
+      AND pe.incident_id IS NOT NULL
+    ORDER BY pe.created_at DESC
+    LIMIT 1
+  `,
+    )
+    .get(channelName, parentTelegramId) as { incident_id: string } | undefined;
+  return row?.incident_id ?? null;
+}
+
 // --- Incidents ---
 
 export interface IncidentRow {
@@ -182,6 +250,7 @@ export interface IncidentRow {
   source_channels: string;
   confidence: number;
   trajectory: string;
+  projection_anchor: string | null;
 }
 
 export function insertIncident(incident: {
@@ -194,15 +263,20 @@ export function insertIncident(incident: {
   sourceChannels: string[];
   confidence: number;
   trajectory: Array<{ lat: number; lng: number; timestamp: number; name: string }>;
+  projectionAnchor?: { lat: number; lng: number; timestamp: number; name: string } | null;
 }): void {
   getDb().prepare(`
-    INSERT INTO incidents (id, weapon_type, weapon_count, status, first_seen_at, last_updated_at, source_channels, confidence, trajectory)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO incidents (
+      id, weapon_type, weapon_count, status, first_seen_at, last_updated_at,
+      source_channels, confidence, trajectory, projection_anchor
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     incident.id, incident.weaponType, incident.weaponCount, incident.status,
     incident.firstSeenAt, incident.lastUpdatedAt,
     JSON.stringify(incident.sourceChannels), incident.confidence,
     JSON.stringify(incident.trajectory),
+    incident.projectionAnchor ? JSON.stringify(incident.projectionAnchor) : null,
   );
 }
 
@@ -213,6 +287,7 @@ export function updateIncident(id: string, updates: {
   sourceChannels?: string[];
   confidence?: number;
   trajectory?: Array<{ lat: number; lng: number; timestamp: number; name: string }>;
+  projectionAnchor?: { lat: number; lng: number; timestamp: number; name: string } | null;
 }): void {
   const sets: string[] = [];
   const values: unknown[] = [];
@@ -223,6 +298,10 @@ export function updateIncident(id: string, updates: {
   if (updates.sourceChannels !== undefined) { sets.push('source_channels = ?'); values.push(JSON.stringify(updates.sourceChannels)); }
   if (updates.confidence !== undefined) { sets.push('confidence = ?'); values.push(updates.confidence); }
   if (updates.trajectory !== undefined) { sets.push('trajectory = ?'); values.push(JSON.stringify(updates.trajectory)); }
+  if (updates.projectionAnchor !== undefined) {
+    sets.push('projection_anchor = ?');
+    values.push(updates.projectionAnchor ? JSON.stringify(updates.projectionAnchor) : null);
+  }
 
   if (sets.length === 0) return;
   values.push(id);
@@ -240,6 +319,11 @@ export function getRecentIncidents(hours: number = 24): IncidentRow[] {
   return getDb()
     .prepare('SELECT * FROM incidents WHERE last_updated_at > ? ORDER BY last_updated_at DESC')
     .all(since) as IncidentRow[];
+}
+
+export function clearAllIncidents(): number {
+  const result = getDb().prepare('DELETE FROM incidents').run();
+  return result.changes;
 }
 
 export function getStaleActiveIncidents(maxAgeSeconds: number = 1800): IncidentRow[] {
@@ -275,6 +359,10 @@ export function getAllGazetteerEntries() {
     parent: string | null;
     aliases: string;
   }>;
+}
+
+export function clearGazetteerEntries(): void {
+  getDb().prepare('DELETE FROM gazetteer').run();
 }
 
 // --- Unmatched locations ---

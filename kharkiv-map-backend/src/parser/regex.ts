@@ -1,6 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import { resolve, type ResolvedLocation } from '../gazetteer/index.js';
+import { resolveBestEffortLocation } from './location-utils.js';
 import type { EventType, WeaponType, ParsedEvent } from './types.js';
+import { detectWeaponTypeFromText } from './weapons.js';
+import { detectPhraseIntents } from './intents.js';
 
 /**
  * Layer 1: Regex-based parser for Telegram monitoring channel messages.
@@ -13,10 +16,17 @@ export function parseWithRegex(
   sourceTimestamp: number,
 ): ParsedEvent | null {
   const clean = text.replace(/\s+/g, ' ').trim();
+  const phraseIntents = detectPhraseIntents(clean);
 
   // --- Flags ---
   const isPreliminary = /^Предварительно/i.test(clean);
   const isCorrection = /^Уточнение/i.test(clean);
+  const isFollowup = /(?:^|\s)(?:далее|дальше|далі|уже\s+возле|вже\s+біля|еще|ещё|ще)(?:$|\s|[,.!?:;])/iu.test(clean);
+
+  let countDelta = 0;
+  if (/(?:^|\s)(?:еще|ещё|ще)\s+од(?:ин|на|не)\b/i.test(clean) || /(?:^|\s)\+1\b/.test(clean)) {
+    countDelta = 1;
+  }
 
   // --- Event type ---
   let eventType: EventType = 'tracking';
@@ -31,20 +41,8 @@ export function parseWithRegex(
   }
 
   // --- Weapon type ---
-  let weaponType: WeaponType = 'unknown';
-  if (/Шахед/i.test(clean)) {
-    weaponType = 'shahed';
-  } else if (/С-300/i.test(clean)) {
-    weaponType = 's300';
-  } else if (/КАБ/i.test(clean)) {
-    weaponType = 'kab';
-  } else if (/[Іі]скандер|Искандер/i.test(clean)) {
-    weaponType = 'iskander';
-  } else if (/ракет[аыі]/i.test(clean)) {
-    weaponType = 'missile';
-  } else if (/БпЛА|БПЛА|дрон/i.test(clean)) {
-    weaponType = 'bpla';
-  } else if (/[Зз]алетают|[Мм]олния/i.test(clean)) {
+  let weaponType: WeaponType = detectWeaponTypeFromText(clean);
+  if (weaponType === 'unknown' && /[Зз]алетают/.test(clean)) {
     // "Залетают" without explicit weapon type implies drones in this context
     weaponType = 'bpla';
   }
@@ -152,6 +150,25 @@ export function parseWithRegex(
     }
   }
 
+  // Pattern: continuation heading updates ("летит дальше на X", "свернул на X")
+  if (!heading && !viaMatch) {
+    const continuationHeadingMatch = clean.match(
+      /(?:лет(?:ит|ят)\s+дальше|далее|далі|дальше|свернул(?:[аи]?)|сменил(?:[аи]?)\s+курс)\s+(?:на\s+)?(.+?)(?:[⚠💥,]|$)/iu,
+    );
+    if (continuationHeadingMatch) {
+      heading = resolveBestEffortLocation(continuationHeadingMatch[1].trim(), rawMessageId);
+    }
+  }
+
+  // Pattern: "подлетает к X" / "летит к X" / generic "к X"
+  if (!heading && !viaMatch) {
+    const towardMatch = clean.match(/(?:подлета(?:ет|ют)|лет(?:ит|ят)|двига(?:ется|ются)|бер[её]т?\s+курс)\s+к\s+(.+?)(?:[⚠💥,]|$)/i)
+      || clean.match(/(?:^|\s)к\s+(.+?)(?:[⚠💥,]|$)/i);
+    if (towardMatch) {
+      heading = resolveBestEffortLocation(towardMatch[1].trim(), rawMessageId);
+    }
+  }
+
   // Pattern: "Залетают на/в X, Y, Z"
   if (!location) {
     const enterMatch = clean.match(/[Зз]алетают\s+(?:на|в)\s+(.+?)(?:[⚠💥]|$)/i);
@@ -164,13 +181,32 @@ export function parseWithRegex(
     }
   }
 
+  // Pattern: slash-separated local naming "X/Y" or "X / Y"
+  if (!location) {
+    const slashMatch = clean.match(/([A-Za-zА-Яа-яІіЇїЄєЁё'’`.-]{2,}(?:\s+[A-Za-zА-Яа-яІіЇїЄєЁё'’`.-]{2,})?\s*\/\s*[A-Za-zА-Яа-яІіЇїЄєЁё'’`.-]{2,}(?:\s+[A-Za-zА-Яа-яІіЇїЄєЁё'’`.-]{2,})?)/);
+    if (slashMatch) {
+      location = resolveBestEffortLocation(slashMatch[1].trim(), rawMessageId);
+    }
+  }
+
   // Pattern: "на X" at end (generic heading, lower confidence)
   if (!location && !heading) {
     const genericOnMatch = clean.match(/(?:^|\s)на\s+(.+?)(?:[⚠💥,]|$)/i);
     if (genericOnMatch) {
-      const resolved = resolve(genericOnMatch[1].trim(), rawMessageId);
+      const resolved = resolveBestEffortLocation(genericOnMatch[1].trim(), rawMessageId);
       if (resolved) {
         heading = resolved;
+      }
+    }
+  }
+
+  // Single-token/short location follow-up like "безлюдовка".
+  if (!location && !heading) {
+    const maybePlace = clean.replace(/[⚠💥!.,;:]+/g, '').trim();
+    if (maybePlace && maybePlace.length >= 3 && maybePlace.split(/\s+/).length <= 3) {
+      const resolved = resolveBestEffortLocation(maybePlace, rawMessageId);
+      if (resolved) {
+        location = resolved;
       }
     }
   }
@@ -203,5 +239,8 @@ export function parseWithRegex(
     isCorrection,
     sourceChannel,
     sourceTimestamp,
+    isFollowup,
+    countDelta,
+    phraseIntents,
   };
 }

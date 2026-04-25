@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { LiveIncident } from '../correlation/engine.js';
+import type { ParsedEvent } from '../parser/types.js';
 
 export type DangerLevel = 'red' | 'orange' | 'green' | null;
 
@@ -32,6 +33,7 @@ const LOOKAHEAD_ORANGE_MIN = 3;
 const EDGE_NEAR_KM = 5;
 const GREEN_COOLDOWN_MS = 5 * 60 * 1000;
 const ETA_ORANGE_MAX_S = 180;
+const NON_DRONE_RISK_TTL_MS = 10 * 60 * 1000;
 
 export interface DistrictPolygon {
   id: string;
@@ -47,6 +49,17 @@ let districtIds: string[] = [];
 let previousRawLevel = new Map<string, 'red' | 'orange'>();
 /** When a district last went from threatened → safe (raw null) */
 const threatEndedAt = new Map<string, number>();
+const nonDroneDistrictOverrides = new Map<string, { level: RawThreat; expiresAt: number }>();
+
+/**
+ * Clears in-memory threat transition state so next compute has no cooldown memory.
+ * Useful for development resets where all targets are intentionally wiped.
+ */
+export function resetDistrictRiskState(): void {
+  previousRawLevel = new Map<string, 'red' | 'orange'>();
+  threatEndedAt.clear();
+  nonDroneDistrictOverrides.clear();
+}
 
 function districtsGeoPath(): string {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -288,6 +301,14 @@ export function computeDistrictRisk(
     raw.set(d.id, level);
   }
 
+  for (const [districtId, override] of nonDroneDistrictOverrides.entries()) {
+    if (override.expiresAt <= now) {
+      nonDroneDistrictOverrides.delete(districtId);
+      continue;
+    }
+    raw.set(districtId, maxThreat(raw.get(districtId) ?? null, override.level));
+  }
+
   const result = new Map<string, DangerLevel>();
 
   for (const id of districtIds) {
@@ -330,4 +351,65 @@ export function computeDistrictRisk(
 export function getLoadedDistrictIds(): string[] {
   ensureLoaded();
   return [...districtIds];
+}
+
+function districtIdFromLocationPoint(lat: number, lng: number): string | null {
+  for (const district of loadedPolygons) {
+    if (pointInPolygon(lng, lat, district.ringLngLat)) {
+      return district.id;
+    }
+  }
+  return null;
+}
+
+function districtIdFromLocationMeta(name: string | null, parent: string | null): string | null {
+  if (name && OSM_NAME_TO_ID[name]) return OSM_NAME_TO_ID[name];
+  if (parent && OSM_NAME_TO_ID[parent]) return OSM_NAME_TO_ID[parent];
+  return null;
+}
+
+/**
+ * Converts non-drone weapon alerts into district-level overlays.
+ * - impact => red
+ * - tracking/correction/preliminary => orange
+ * Falls back to all districts when no specific district can be inferred.
+ */
+export function applyNonDroneDistrictAlert(event: ParsedEvent, nowMs: number = Date.now()): string[] {
+  ensureLoaded();
+  const level: RawThreat = event.eventType === 'impact' ? 'red' : 'orange';
+  const expiresAt = nowMs + NON_DRONE_RISK_TTL_MS;
+  const targets = new Set<string>();
+  const locations = [event.location, event.via, event.heading].filter((v) => !!v);
+
+  for (const loc of locations) {
+    const byMeta = districtIdFromLocationMeta(loc.canonicalName, loc.parent);
+    if (byMeta) {
+      targets.add(byMeta);
+      continue;
+    }
+    const byPoint = districtIdFromLocationPoint(loc.lat, loc.lng);
+    if (byPoint) {
+      targets.add(byPoint);
+    }
+  }
+
+  if (targets.size === 0) {
+    for (const id of districtIds) {
+      targets.add(id);
+    }
+  }
+
+  for (const districtId of targets) {
+    const prev = nonDroneDistrictOverrides.get(districtId);
+    if (!prev || prev.level === 'orange') {
+      nonDroneDistrictOverrides.set(districtId, { level, expiresAt });
+      continue;
+    }
+    nonDroneDistrictOverrides.set(districtId, {
+      level: prev.level === 'red' ? 'red' : level,
+      expiresAt: Math.max(prev.expiresAt, expiresAt),
+    });
+  }
+
+  return [...targets];
 }

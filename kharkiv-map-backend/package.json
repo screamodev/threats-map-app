@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "generate:lexicon": "tsx src/lexicon/generate.ts",
     "dev": "tsx watch --ignore '.telegram-session' --ignore 'data/**' src/index.ts",
     "auth": "tsx src/index.ts",
-    "build": "tsc",
+    "build": "pnpm run generate:lexicon && tsc",
     "start": "node dist/index.js",
     "test:gazetteer": "tsx src/gazetteer/test.ts",
+    "test:gazetteer:ambiguous": "tsx src/gazetteer/ambiguous.test.ts",
+    "test:lexicon": "tsx src/lexicon/test.ts",
+    "test:lexicon:coverage": "tsx src/lexicon/coverage.test.ts",
     "test:parser": "tsx src/parser/test.ts",
-    "test:correlation": "tsx src/correlation/test.ts"
+    "test:correlation": "tsx src/correlation/test.ts",
+    "test:ci": "pnpm run test:lexicon && pnpm run test:lexicon:coverage && pnpm run test:gazetteer:ambiguous && pnpm run test:parser && pnpm run test:correlation"
   },
   "license": "ISC",
   "dependencies": {
@@ -30,5 +35,6 @@
     "@types/ws": "^8.18.1",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
-  }
+  },
+  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
 }

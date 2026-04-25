@@ -5,6 +5,8 @@ PRAGMA foreign_keys=ON;
 CREATE TABLE IF NOT EXISTS raw_messages (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
   telegram_id   INTEGER NOT NULL,
+  reply_to_telegram_id INTEGER,
+  grouped_id    INTEGER,
   channel_id    INTEGER NOT NULL,
   channel_name  TEXT NOT NULL,
   text          TEXT NOT NULL,
@@ -47,7 +49,8 @@ CREATE TABLE IF NOT EXISTS incidents (
   last_updated_at INTEGER NOT NULL,
   source_channels TEXT NOT NULL DEFAULT '[]',
   confidence      REAL NOT NULL DEFAULT 0.5,
-  trajectory      TEXT NOT NULL DEFAULT '[]'
+  trajectory      TEXT NOT NULL DEFAULT '[]',
+  projection_anchor TEXT
 );
 
 CREATE TABLE IF NOT EXISTS gazetteer (

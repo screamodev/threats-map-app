@@ -1,3 +1,5 @@
+import { GENERATED_LOCATION_ALIASES } from '../generated/location-aliases.js';
+
 export interface GazetteerSeedEntry {
   canonical: string;
   lat: number;
@@ -7,7 +9,7 @@ export interface GazetteerSeedEntry {
   aliases: string[];
 }
 
-export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
+const BASE_GAZETTEER_SEED: GazetteerSeedEntry[] = [
   // === Kharkiv city neighborhoods ===
   {
     canonical: 'Олексіївка',
@@ -149,13 +151,33 @@ export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
     canonical: 'Черкаська Лозова',
     lat: 50.0800, lng: 36.2100,
     type: 'village', parent: 'Дергачівська громада',
-    aliases: ['Черкасская Лозовая', 'Черк. Лозова', 'Черкасской Лозовой'],
+    aliases: [
+      'Черкасская Лозовая',
+      'Черк. Лозова',
+      'Черкасской Лозовой',
+      'Черкаську Лозову',
+      'Черкаської Лозової',
+      'Черкаською Лозовою',
+      'черкаскую лозовую',
+      'черкасскую лозовую',
+      'черкасской лозовой',
+      'черкасской лозове',
+    ],
   },
   {
     canonical: 'Руська Лозова',
     lat: 50.1200, lng: 36.2800,
     type: 'village', parent: 'Дергачівська громада',
-    aliases: ['Русская Лозовая', 'Рус. Лозова', 'Русская Лозовая'],
+    aliases: [
+      'Русская Лозовая',
+      'Рус. Лозова',
+      'Руську Лозову',
+      'Руської Лозової',
+      'Руською Лозовою',
+      'русскую лозовую',
+      'русской лозовой',
+      'русской лозове',
+    ],
   },
   {
     canonical: "П'ятихатки",
@@ -182,16 +204,59 @@ export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
     aliases: ['Циркуны', 'Циркуні'],
   },
   {
+    canonical: 'Мала Данилівка',
+    lat: 50.0620, lng: 36.1650,
+    type: 'village', parent: 'Дергачівська громада',
+    aliases: [
+      'Малая Даниловка',
+      'Малую Даниловку',
+      'Малой Даниловке',
+      'Малой Даниловки',
+      'Малу Данилівку',
+      'Малій Данилівці',
+    ],
+  },
+  {
     canonical: 'Липці',
     lat: 50.1600, lng: 36.3500,
     type: 'village', parent: 'Харківська область',
     aliases: ['Липцы', 'Липці'],
   },
   {
+    canonical: 'Веселе',
+    lat: 50.1220, lng: 36.4200,
+    type: 'village', parent: 'Харківська область',
+    aliases: ['Веселое', 'Веселе', 'Весёлое'],
+  },
+  {
+    canonical: 'Старий Салтів',
+    lat: 50.0765, lng: 36.7880,
+    type: 'village', parent: 'Чугуївський район',
+    aliases: ['Старый Салтов', 'Ст Салтов', 'Ст. Салтов', 'Ст.Салтов', 'Старий Салтов'],
+  },
+  {
+    canonical: 'Безлюдівка',
+    lat: 49.8750, lng: 36.2700,
+    type: 'village', parent: 'Безлюдівська громада',
+    aliases: ['Безлюдовка', 'Безлюдівка', 'Безлюдовке', 'Безлюдовку', 'Безлюдівці'],
+  },
+  {
     canonical: 'Золочів',
     lat: 50.2800, lng: 35.9700,
     type: 'village', parent: 'Золочівська громада',
     aliases: ['Золочев', 'Золочів'],
+  },
+  {
+    canonical: 'Козача Лопань',
+    lat: 50.3319, lng: 36.1936,
+    type: 'village', parent: 'Дергачівська громада',
+    aliases: ['Козачья Лопань', 'Козачью Лопань', 'Козачка', 'Козачку', 'Козачкой', 'Козачки'],
+  },
+  {
+    canonical: 'Слатине',
+    lat: 50.2056, lng: 36.1546,
+    type: 'village', parent: 'Дергачівська громада',
+    aliases: ['Слатино', 'Слатину', 'Слатином', 'Слатине'],
   },
   {
     canonical: 'Мерефа',
@@ -206,10 +271,28 @@ export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
     aliases: ['Люботин'],
   },
   {
+    canonical: 'Гути',
+    lat: 50.1310, lng: 35.3450,
+    type: 'village', parent: 'Богодухівський район',
+    aliases: ['Гуты', 'Гутах'],
+  },
+  {
     canonical: 'Солоніцівка',
     lat: 49.9900, lng: 36.0200,
     type: 'village', parent: 'Люботинська громада',
     aliases: ['Солоницевка', 'Солоніцівку'],
+  },
+  {
+    canonical: 'Коломак',
+    lat: 49.8360, lng: 35.3030,
+    type: 'village', parent: 'Богодухівський район',
+    aliases: ['Коломак', 'Коломаку', 'Коломаке'],
+  },
+  {
+    canonical: 'Шарівка',
+    lat: 49.9200, lng: 35.1100,
+    type: 'village', parent: 'Богодухівський район',
+    aliases: ['Шаровка', 'Шаровке', 'Шаровку'],
   },
 
   // === Oblast cities ===
@@ -244,10 +327,22 @@ export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
     aliases: ['Балаклея', 'Балаклію'],
   },
   {
+    canonical: 'Шевченкове',
+    lat: 49.6950, lng: 37.1730,
+    type: 'city', parent: 'Харківська область',
+    aliases: ['Шевченково', 'Шевченкова'],
+  },
+  {
     canonical: 'Лозова',
     lat: 48.8896, lng: 36.3192,
     type: 'city', parent: 'Харківська область',
     aliases: ['Лозовая', 'Лозову'],
+  },
+  {
+    canonical: 'Харків',
+    lat: 49.9935, lng: 36.2304,
+    type: 'city', parent: 'Харківська область',
+    aliases: ['Харьков', 'Харков', 'Харькову', 'Харькова', 'Харкову', 'Харкова'],
   },
   {
     canonical: 'Бєлгород',
@@ -344,3 +439,12 @@ export const GAZETTEER_SEED: GazetteerSeedEntry[] = [
     aliases: ['Индустриальный район', 'Індустріальний', 'Индустриальный'],
   },
 ];
+
+export const GAZETTEER_SEED: GazetteerSeedEntry[] = BASE_GAZETTEER_SEED.map((entry) => {
+  const generatedAliases =
+    (GENERATED_LOCATION_ALIASES as Record<string, readonly string[]>)[entry.canonical] ?? [];
+  return {
+    ...entry,
+    aliases: [...new Set([...entry.aliases, ...generatedAliases])],
+  };
+});

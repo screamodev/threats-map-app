@@ -13,7 +13,14 @@ export async function parseMessage(
   rawMessageId: number,
   sourceChannel: string,
   sourceTimestamp: number,
+  replyToTelegramId?: number | null,
+  groupedId?: number | null,
 ): Promise<ParsedEvent | null> {
+  if (!Number.isFinite(rawMessageId) || rawMessageId <= 0) {
+    console.warn(`[parser] Invalid rawMessageId=${rawMessageId}, skipping parse`);
+    return null;
+  }
+
   // Security filter first
   const filteredOut = containsAirDefenseInfo(text);
   if (filteredOut) {
@@ -62,6 +69,9 @@ export async function parseMessage(
     markMessageProcessed(rawMessageId, 2); // failed
     return null;
   }
+
+  event.replyToTelegramId = replyToTelegramId ?? null;
+  event.groupedId = groupedId ?? null;
 
   // Store parsed event
   insertParsedEvent({
