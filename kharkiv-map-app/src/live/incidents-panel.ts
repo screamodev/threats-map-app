@@ -1,5 +1,6 @@
 import { onSnapshot, onNewIncident, onUpdateIncident, onExpireIncident } from './connection';
 import type { LiveIncident } from './types';
+import { getTargetInfo, getWeaponVisualMeta } from './weapon-visuals';
 
 const incidents = new Map<string, LiveIncident>();
 let panelEl: HTMLElement | null = null;
@@ -50,11 +51,28 @@ function render() {
     const lastPoint = inc.trajectory[inc.trajectory.length - 1];
     const locationName = lastPoint?.name || inc.currentHeading?.name || '—';
     const ago = formatAgo(inc.lastUpdatedAt);
+    const info = inc.targetInfo ?? getTargetInfo(inc);
+    const visual = getWeaponVisualMeta(inc.weaponType);
+    const ambiguity = info.ambiguityFlags?.length
+      ? info.ambiguityFlags.join(', ')
+      : 'немає';
+    const interpretedSlang = info.interpretedSlang ?? '—';
+    const threatNotes = info.threatNotes ?? '—';
+    const detectionSource = info.detectionSource ?? '—';
 
     return `
       <div class="incident-card ${statusClass}">
         <div class="incident-header">
-          <span class="incident-weapon" style="color:${inc.color}">${inc.weaponTypeLabel} x${inc.weaponCount}</span>
+          <span class="incident-weapon" style="color:${inc.color}">
+            <span class="incident-weapon-icon incident-weapon-icon--${visual.shape}">
+              ${
+                visual.iconPath
+                  ? `<img class="incident-weapon-icon__img" src="${visual.iconPath}" alt="${inc.weaponTypeLabel}" />`
+                  : `<span class="incident-weapon-icon__label">${visual.icon}</span>`
+              }
+            </span>
+            ${inc.weaponTypeLabel} x${inc.weaponCount}
+          </span>
           <span class="incident-status ${statusClass}">${statusLabel}</span>
         </div>
         <div class="incident-location">${locationName}</div>
@@ -62,6 +80,17 @@ function render() {
           <span>${ago}</span>
           <span>Впевненість: ${Math.round(inc.confidence * 100)}%</span>
         </div>
+        <details class="target-info-panel">
+          <summary>Target Info</summary>
+          <div class="target-info-grid">
+            <span>Canonical type</span><span>${info.canonicalType}</span>
+            <span>Interpreted slang</span><span>${interpretedSlang}</span>
+            <span>Confidence</span><span>${Math.round(info.confidence * 100)}%</span>
+            <span>Detection source</span><span>${detectionSource}</span>
+            <span>Ambiguity flags</span><span>${ambiguity}</span>
+            <span>Threat notes</span><span>${threatNotes}</span>
+          </div>
+        </details>
       </div>
     `;
   }).join('');

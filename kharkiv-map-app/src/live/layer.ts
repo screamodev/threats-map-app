@@ -6,6 +6,7 @@ import {
   onUpdateIncident,
   onExpireIncident,
 } from './connection';
+import { getWeaponVisualMeta } from './weapon-visuals';
 
 interface IncidentVisuals {
   polyline: L.Polyline;
@@ -17,6 +18,7 @@ interface IncidentVisuals {
 
 const incidentMap = new Map<string, IncidentVisuals>();
 let mapRef: L.Map;
+let projectionRafId: number | null = null;
 
 export function initLiveLayer(map: L.Map) {
   mapRef = map;
@@ -42,6 +44,18 @@ export function initLiveLayer(map: L.Map) {
   onExpireIncident((id) => {
     fadeAndRemove(id);
   });
+
+  if (projectionRafId !== null) {
+    cancelAnimationFrame(projectionRafId);
+  }
+  const tick = () => {
+    const nowMs = Date.now();
+    for (const vis of incidentMap.values()) {
+      setProjectedVisualPosition(vis, nowMs);
+    }
+    projectionRafId = requestAnimationFrame(tick);
+  };
+  projectionRafId = requestAnimationFrame(tick);
 }
 
 function addIncident(inc: LiveIncident) {
@@ -63,7 +77,7 @@ function addIncident(inc: LiveIncident) {
   }).addTo(mapRef);
 
   // Head marker
-  const headPos = coords[coords.length - 1] || [49.99, 36.23];
+  const headPos = getProjectedHeadPos(inc);
   const headMarker = createHeadMarker(inc, headPos);
 
   const headingArrow = shouldShowHeadingArrow(inc, coords.length)
@@ -90,7 +104,7 @@ function updateIncident(inc: LiveIncident) {
   );
   vis.polyline.setLatLngs(coords);
 
-  const headPos = coords[coords.length - 1] || [49.99, 36.23];
+  const headPos = getProjectedHeadPos(inc);
 
   // Replace head marker if status changed to impact
   if (inc.status === 'impact' && vis.incident.status !== 'impact') {
@@ -111,6 +125,43 @@ function updateIncident(inc: LiveIncident) {
   vis.label.setLatLng(headPos);
   vis.label.setIcon(buildLabelIcon(inc));
   vis.incident = inc;
+  setProjectedVisualPosition(vis);
+}
+
+function setProjectedVisualPosition(vis: IncidentVisuals, nowMs = Date.now()) {
+  const projectedHeadPos = getProjectedHeadPos(vis.incident, nowMs);
+  vis.headMarker.setLatLng(projectedHeadPos);
+  vis.label.setLatLng(projectedHeadPos);
+  if (vis.headingArrow) {
+    vis.headingArrow.setLatLng(projectedHeadPos);
+  }
+}
+
+function getProjectedHeadPos(inc: LiveIncident, nowMs = Date.now()): [number, number] {
+  const projectionBase = inc.projectionAnchor ?? inc.trajectory[inc.trajectory.length - 1] ?? null;
+  if (!projectionBase) {
+    return [49.99, 36.23];
+  }
+
+  const canProject =
+    inc.status === 'active' &&
+    inc.bearingDeg !== null &&
+    inc.speedKmh > 0 &&
+    inc.etaSeconds !== null &&
+    inc.etaSeconds > 0 &&
+    Number.isFinite(inc.lastUpdatedAt);
+
+  if (!canProject) {
+    return [projectionBase.lat, projectionBase.lng];
+  }
+  const bearingDeg = inc.bearingDeg as number;
+  const etaSeconds = inc.etaSeconds as number;
+
+  const elapsedSeconds = Math.max(0, (nowMs - inc.lastUpdatedAt * 1000) / 1000);
+  const projectedSeconds = Math.min(elapsedSeconds, etaSeconds);
+  const projectedDistanceKm = (inc.speedKmh * projectedSeconds) / 3600;
+  const projectedPoint = destinationKm(projectionBase.lat, projectionBase.lng, bearingDeg, projectedDistanceKm);
+  return [projectedPoint.lat, projectedPoint.lng];
 }
 
 function shouldShowHeadingArrow(inc: LiveIncident, trajectoryLen: number): boolean {
@@ -128,6 +179,29 @@ function arrowLengthPx(speedKmh: number): number {
   const max = 72;
   const t = Math.min(1, speed / 2200);
   return Math.round(min + t * (max - min));
+}
+
+/** Destination point ~`distanceKm` along initial bearing from (lat, lng). */
+function destinationKm(lat: number, lng: number, bearingDeg: number, distanceKm: number): { lat: number; lng: number } {
+  const R = 6371;
+  const delta = distanceKm / R;
+  const theta = (bearingDeg * Math.PI) / 180;
+  const phi1 = (lat * Math.PI) / 180;
+  const lambda1 = (lng * Math.PI) / 180;
+  const sinPhi1 = Math.sin(phi1);
+  const cosPhi1 = Math.cos(phi1);
+  const sinDelta = Math.sin(delta);
+  const cosDelta = Math.cos(delta);
+  const sinPhi2 = sinPhi1 * cosDelta + cosPhi1 * sinDelta * Math.cos(theta);
+  const phi2 = Math.asin(sinPhi2);
+  const lambda2 = lambda1 + Math.atan2(
+    Math.sin(theta) * sinDelta * cosPhi1,
+    cosDelta - sinPhi1 * sinPhi2,
+  );
+  return {
+    lat: (phi2 * 180) / Math.PI,
+    lng: (((lambda2 * 180) / Math.PI + 540) % 360) - 180,
+  };
 }
 
 function formatEta(seconds: number): string {
@@ -184,26 +258,28 @@ function createHeadingArrowMarker(
   }).addTo(mapRef);
 }
 
-function createHeadMarker(inc: LiveIncident, pos: [number, number]): L.CircleMarker {
-  const marker = L.circleMarker(pos, {
-    radius: 6,
-    fillColor: inc.color,
-    color: '#fff',
-    fillOpacity: 1,
-    weight: 2,
-    className: 'live-head-marker',
-  }).addTo(mapRef);
-
-  // Pulse effect
-  const pulseIcon = L.divIcon({
-    className: 'pulse-marker',
-    html: `<div class="pulse-ring" style="background:${inc.color}"></div>`,
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
+function createHeadMarker(inc: LiveIncident, pos: [number, number]): L.Marker {
+  const meta = getWeaponVisualMeta(inc.weaponType);
+  const icon = L.divIcon({
+    className: 'live-head-icon',
+    html: `
+      <div class="live-head-marker live-head-marker--${meta.shape}" style="--weapon-color:${inc.color}">
+        ${
+          meta.iconPath
+            ? `<img class="live-head-marker__img" src="${meta.iconPath}" alt="${inc.weaponTypeLabel}" />`
+            : `<span class="live-head-marker__label">${meta.icon}</span>`
+        }
+      </div>
+    `,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
   });
-  L.marker(pos, { icon: pulseIcon, interactive: false }).addTo(mapRef);
 
-  return marker;
+  return L.marker(pos, {
+    icon,
+    interactive: false,
+    zIndexOffset: 400,
+  }).addTo(mapRef);
 }
 
 function createImpactMarker(color: string, pos: [number, number]): L.Marker {

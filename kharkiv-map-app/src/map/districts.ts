@@ -32,6 +32,10 @@ interface DistrictLayerEntry {
 const layersByDistrictId = new Map<string, DistrictLayerEntry>();
 let currentLevels: Record<string, DangerLevel> = {};
 
+function hasActiveThreat(levels: Record<string, DangerLevel>): boolean {
+  return Object.values(levels).some((v) => v === 'red' || v === 'orange');
+}
+
 function findDistrict(name: string): DistrictRisk | undefined {
   const id = osmNameToId[name];
   if (id) return districtRisks.find((d) => d.id === id);
@@ -64,8 +68,11 @@ function dangerStyle(level: Exclude<DangerLevel, null>): L.PathOptions {
 }
 
 function applyStyle(entry: DistrictLayerEntry): void {
+  const noTargets = !hasActiveThreat(currentLevels);
   const live = entry.districtId ? currentLevels[entry.districtId] ?? null : null;
-  if (live) {
+  if (noTargets) {
+    entry.layer.setStyle(dangerStyle('green'));
+  } else if (live) {
     entry.layer.setStyle(dangerStyle(live));
   } else {
     entry.layer.setStyle(staticStyle(entry.district));

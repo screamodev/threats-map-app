@@ -21,7 +21,7 @@ function riskSubtitleFromLevels(levels: Record<string, DangerLevel>): string {
   }
 
   if (red === 0 && orange === 0) {
-    return 'Немає активної загрози по районах (live)';
+    return 'Цілей немає: місто в зеленій зоні (live)';
   }
 
   const left =
@@ -48,77 +48,47 @@ export function renderSidebar(): void {
   content.innerHTML = `
     <h1>Карта загроз Харкова</h1>
     <p class="subtitle" id="sidebar-risk-subtitle">Очікування даних live…</p>
-
-    <div class="sidebar-tabs">
-      <button class="sidebar-tab active" data-tab="info">Інфо</button>
-      <button class="sidebar-tab" data-tab="live">Live</button>
-    </div>
-
-    <div class="tab-content" id="tab-info">
-      <div class="info-card warning">
-        <h3>С-300 з Бєлгорода</h3>
-        <p>Зенітні ракети С-300 запускаються з Бєлгородської області (відстань ~70 км). Час підльоту — лише <strong>49 секунд</strong>. Основний напрямок ударів — по північних районах міста. Через мінімальний час реагування повітряна тривога часто лунає вже після влучання.</p>
-      </div>
-
-      <div class="info-card warning">
-        <h3>КАБ — керовані авіабомби</h3>
-        <p>Росія скидає КАБ-500/КАБ-1500 з літаків Су-34 зі сходу та північного сходу. Час підльоту — <strong>3–4 хвилини</strong>. Вага бомби до 1500 кг — масштабні руйнування. Активне використання з 2024 року.</p>
-      </div>
-
-      <div class="info-card info">
-        <h3>Шахед-136 (дрони)</h3>
-        <p>Іранські дрони-камікадзе запускаються зі сходу. Час підльоту — <strong>30–60 хвилин</strong>. Повільні, але важко перехоплюються у великій кількості. Часто летять зграями по 5–10 одиниць.</p>
-      </div>
-
-      <div class="info-card warning">
-        <h3>Іскандер</h3>
-        <p>Балістичні ракети «Іскандер-М» запускаються з глибини Росії. Час підльоту — близько <strong>60 секунд</strong>. Гіперзвукова швидкість робить перехоплення вкрай складним.</p>
-      </div>
-
-      <div class="info-card safe">
-        <h3>Відносно безпечніші райони</h3>
-        <p>Південні райони міста (<strong>Новобаварський</strong> та <strong>Основ'янський</strong>) є найвіддаленішими від кордону з РФ та лінії фронту. Статистично зазнають менше ударів.</p>
-      </div>
-
-      <div class="info-card info">
-        <h3>Станції метро як укриття</h3>
-        <p>Харківське метро — найнадійніше укриття від обстрілів. Більшість районів мають станції метро. Глибина залягання — до 30 метрів. Районі без метро: <strong>Індустріальний</strong> та <strong>Новобаварський</strong>.</p>
-      </div>
-
-      <div class="info-card info">
-        <h3>Чому південь безпечніший</h3>
-        <p>Основні напрямки ударів — з півночі (Бєлгород, С-300) та північного сходу (КАБи). Південні райони знаходяться на максимальній відстані від цих напрямків. Додатковий фактор — рельєф та міська забудова створюють природній «щит».</p>
-      </div>
-    </div>
+    <div class="dev-controls" id="dev-controls"></div>
   `;
-
-  // Tab switching
-  const tabs = content.querySelectorAll('.sidebar-tab');
-  const infoTab = document.getElementById('tab-info');
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = (tab as HTMLElement).dataset.tab;
-      tabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      if (target === 'info') {
-        if (infoTab) infoTab.style.display = '';
-        if (panel) panel.style.display = 'none';
-      } else {
-        if (infoTab) infoTab.style.display = 'none';
-        if (panel) panel.style.display = '';
-      }
-    });
-  });
-
-  // Initially hide live panel
-  if (panel) panel.style.display = 'none';
+  if (panel) panel.style.display = '';
 
   const riskSubtitle = document.getElementById('sidebar-risk-subtitle');
   if (riskSubtitle) {
     onDistrictRisk((payload) => {
       updateRiskSubtitle(riskSubtitle, payload.levels ?? {});
+    });
+  }
+
+  const isDevUi =
+    location.hostname === 'localhost' ||
+    location.hostname === '127.0.0.1' ||
+    location.hostname === '0.0.0.0';
+
+  const devControls = document.getElementById('dev-controls');
+  if (devControls && isDevUi) {
+    devControls.innerHTML = '<button class="dev-btn" id="dev-clear-targets-btn">[dev] clear targets</button>';
+    const clearBtn = document.getElementById('dev-clear-targets-btn');
+    clearBtn?.addEventListener('click', async () => {
+      const btn = clearBtn as HTMLButtonElement;
+      if (btn.disabled) return;
+      btn.disabled = true;
+      const prev = btn.textContent;
+      btn.textContent = '[dev] clearing...';
+      try {
+        const resp = await fetch('/api/dev/clear-targets', { method: 'POST' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        btn.textContent = '[dev] cleared';
+        setTimeout(() => {
+          btn.textContent = prev ?? '[dev] clear targets';
+          btn.disabled = false;
+        }, 900);
+      } catch {
+        btn.textContent = '[dev] failed';
+        setTimeout(() => {
+          btn.textContent = prev ?? '[dev] clear targets';
+          btn.disabled = false;
+        }, 1500);
+      }
     });
   }
 

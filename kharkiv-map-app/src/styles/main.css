@@ -89,6 +89,30 @@ body {
   margin-bottom: 20px;
 }
 
+.dev-controls {
+  margin-bottom: 12px;
+}
+
+.dev-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  color: #b0b0b0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dev-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd;
+}
+
+.dev-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 /* Info cards */
 .info-card {
   background: rgba(255, 255, 255, 0.04);
@@ -252,36 +276,6 @@ body {
   animation: district-pulse-red-kf 1.4s ease-in-out infinite;
 }
 
-/* Pulse animation for origin points */
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-}
-
-.pulse-marker {
-  position: relative;
-}
-
-.pulse-ring {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  animation: pulse-ring 2s ease-out infinite;
-  top: 50%;
-  left: 50%;
-  transform-origin: center;
-  margin-top: -10px;
-  margin-left: -10px;
-  pointer-events: none;
-}
-
 /* Attack label */
 .attack-label {
   background: rgba(16, 16, 32, 0.85);
@@ -319,6 +313,72 @@ body {
   height: 8px;
   border-radius: 50%;
   box-shadow: 0 0 8px 2px currentColor;
+}
+
+/* Live head markers */
+.live-head-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.live-head-marker {
+  --weapon-color: #999;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  background: color-mix(in srgb, var(--weapon-color) 78%, #0f0f20);
+  color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--weapon-color) 60%, transparent);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.live-head-marker--circle { border-radius: 999px; }
+.live-head-marker--diamond { border-radius: 5px; transform: rotate(45deg); }
+.live-head-marker--diamond .live-head-marker__label { transform: rotate(-45deg); }
+.live-head-marker--diamond .live-head-marker__img { transform: rotate(-45deg); }
+.live-head-marker--triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 24px solid color-mix(in srgb, var(--weapon-color) 78%, #0f0f20);
+  border-top: 0;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+  box-shadow: none;
+}
+.live-head-marker--triangle::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 2px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #fff;
+  z-index: -1;
+}
+.live-head-marker--triangle .live-head-marker__label {
+  position: absolute;
+  top: 10px;
+  left: -9px;
+  width: 18px;
+  text-align: center;
+  font-size: 7px;
+}
+.live-head-marker--hex { border-radius: 6px; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+.live-head-marker--square { border-radius: 4px; }
+.live-head-marker--pill { border-radius: 999px; width: 30px; }
+.live-head-marker__img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Connection status */
@@ -431,8 +491,65 @@ body {
 }
 
 .incident-weapon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 600;
   font-size: 14px;
+}
+
+.incident-weapon-icon {
+  min-width: 26px;
+  height: 18px;
+  padding: 0 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f2f2f2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.incident-weapon-icon__label {
+  display: inline-block;
+}
+.incident-weapon-icon__img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
+}
+.incident-weapon-icon--circle { border-radius: 999px; }
+.incident-weapon-icon--diamond { border-radius: 4px; transform: rotate(45deg); }
+.incident-weapon-icon--diamond .incident-weapon-icon__label { transform: rotate(-45deg); }
+.incident-weapon-icon--diamond .incident-weapon-icon__img { transform: rotate(-45deg); }
+.incident-weapon-icon--triangle { clip-path: polygon(50% 0%, 100% 100%, 0% 100%); border-radius: 0; padding: 0; min-width: 20px; }
+.incident-weapon-icon--hex { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); border-radius: 0; }
+.incident-weapon-icon--square { border-radius: 4px; }
+.incident-weapon-icon--pill { border-radius: 999px; min-width: 32px; }
+
+.target-info-panel {
+  margin-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  padding-top: 8px;
+}
+
+.target-info-panel > summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #c8c8c8;
+  user-select: none;
+}
+
+.target-info-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 118px 1fr;
+  gap: 4px 8px;
+  font-size: 11px;
+  color: #aaa;
 }
 
 .incident-status {

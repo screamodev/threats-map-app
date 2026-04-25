@@ -14,6 +14,7 @@ export interface LiveIncident {
   weaponCount: number;
   status: 'active' | 'impact' | 'expired';
   trajectory: Array<{ lat: number; lng: number; timestamp: number; name: string }>;
+  projectionAnchor: { lat: number; lng: number; timestamp: number; name: string } | null;
   currentHeading: { lat: number; lng: number; name: string } | null;
   bearingDeg: number | null;
   speedKmh: number;
@@ -25,6 +26,14 @@ export interface LiveIncident {
   firstSeenAt: number;
   lastUpdatedAt: number;
   color: string;
+  targetInfo?: {
+    canonicalType: string;
+    interpretedSlang?: string | null;
+    confidence: number;
+    threatNotes?: string | null;
+    detectionSource?: string | null;
+    ambiguityFlags?: string[];
+  };
 }
 
 export type WsMessage =
